@@ -5,27 +5,29 @@
 
 class FloatingCart {
     constructor() {
-        this.fab = null;
-        this.badge = null;
+        this.cartTriggers = []; // Can be multiple buttons
+        this.badges = []; // Can be multiple badges
         this.count = 0;
         this.items = [];
     }
 
     init() {
         // Get DOM elements
-        this.fab = document.querySelector('.cart-fab');
-        this.badge = document.querySelector('.cart-badge');
+        this.cartTriggers = document.querySelectorAll('.cart-fab, .nav-cart');
+        this.badges = document.querySelectorAll('.cart-badge, .nav-cart-badge');
 
-        if (!this.fab || !this.badge) {
-            console.warn('Cart FAB elements not found');
+        if (this.cartTriggers.length === 0) {
+            console.warn('Cart trigger elements not found');
             return;
         }
 
         // Load cart from localStorage
         this.loadCart();
 
-        // Bind FAB click to navigate to cart/checkout
-        this.fab.addEventListener('click', () => this.openCart());
+        // Bind clicks to all cart triggers
+        this.cartTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => this.openCart(e));
+        });
 
         // Listen for add to cart events
         document.addEventListener('addToCart', (e) => this.addItem(e.detail));
@@ -82,8 +84,10 @@ class FloatingCart {
                 quantity: item.quantity || 1
             });
         }
+        
+        // Recalculate total items count
+        this.count = this.items.reduce((sum, current) => sum + current.quantity, 0);
 
-        this.count++;
         this.updateBadge();
         this.pulseAnimation();
         this.saveCart();
@@ -121,34 +125,39 @@ class FloatingCart {
     }
 
     /**
-     * Update badge count
+     * Update badge count on all badge elements
      */
     updateBadge() {
-        if (this.badge) {
-            this.badge.textContent = this.count;
+        this.badges.forEach(badge => {
+            if (badge) {
+                badge.textContent = this.count;
 
-            if (this.count > 99) {
-                this.badge.textContent = '99+';
+                if (this.count > 99) {
+                    badge.textContent = '99+';
+                }
+                
+                // Special handling for the FAB badge display style
+                if (badge.classList.contains('cart-badge')) {
+                    if (this.count === 0) {
+                        badge.style.display = 'none';
+                    } else {
+                        badge.style.display = 'flex';
+                    }
+                }
             }
-
-            // Hide badge if count is 0
-            if (this.count === 0) {
-                this.badge.style.display = 'none';
-            } else {
-                this.badge.style.display = 'flex';
-            }
-        }
+        });
     }
 
     /**
      * Pulse animation on cart FAB
      */
     pulseAnimation() {
-        if (this.fab) {
-            this.fab.classList.add('pulse');
+        const fab = document.querySelector('.cart-fab');
+        if (fab) {
+            fab.classList.add('pulse');
 
             setTimeout(() => {
-                this.fab.classList.remove('pulse');
+                fab.classList.remove('pulse');
             }, 600);
         }
     }
@@ -173,7 +182,9 @@ class FloatingCart {
     /**
      * Open cart and trigger WhatsApp checkout
      */
-    openCart() {
+    openCart(e) {
+        e.preventDefault(); // Prevents the <a> tag from navigating to #cart
+        
         if ('vibrate' in navigator) {
             navigator.vibrate(10);
         }

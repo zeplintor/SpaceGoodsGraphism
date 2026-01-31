@@ -768,7 +768,7 @@ body.no-scroll {
 }
 
 /* Shop Now button - swap to colored version on hover */
-a[href*="products"] .btn-svg-wrapper::before,
+a[href*="products"].btn-svg-wrapper::before,
 .btn-svg-wrapper:has(img[src*="shopnow"])::before {
     background-image: url('../img/SVG/shopnowcolor.svg');
 }

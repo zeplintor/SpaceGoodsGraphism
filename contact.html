@@ -407,7 +407,7 @@
                 <h3>📧 Email</h3>
                 <p>
                     Drop us a message at<br>
-                    <a href="mailto:hello@spacegoods.co">hello@spacegoods.co</a>
+                    <a href="mailto:contact@spacegoods.fun">contact@spacegoods.fun</a>
                 </p>
             </div>
 
@@ -421,8 +421,10 @@
             </div>
         </div>
 
-        <form>
+        <form name="contact" method="POST" data-netlify="true">
             <h2>Send us a message</h2>
+
+            <input type="hidden" name="form-name" value="contact" />
 
             <div class="form-group">
                 <label for="name">Your Name</label>

@@ -171,22 +171,45 @@ class FloatingCart {
     }
 
     /**
-     * Open cart (navigate to cart page or show modal)
+     * Open cart and trigger WhatsApp checkout
      */
     openCart() {
-        // Option 1: Navigate to cart page
-        // window.location.href = 'cart.html';
-
-        // Option 2: Show cart modal/sidebar
-        console.log('Cart clicked:', this.items);
-
-        // For now, just log cart contents
-        alert(`Cart: ${this.count} item(s)\n\n${this.getCartSummary()}`);
-
-        // Haptic feedback
         if ('vibrate' in navigator) {
             navigator.vibrate(10);
         }
+
+        if (this.items.length === 0) {
+            alert('Your cart is empty. Add some cosmic goods!');
+            return;
+        }
+
+        // A simple confirmation dialog before redirecting
+        const summary = this.getCartSummary();
+        const total = this.getTotal();
+        const confirmationMessage = `Your Order Summary:\n\n${summary}\n\nTotal: $${total.toFixed(2)}\n\nProceed to WhatsApp to complete your order?`;
+
+        if (confirm(confirmationMessage)) {
+            this.whatsappCheckout();
+        }
+    }
+
+    /**
+     * Generate WhatsApp link and redirect
+     */
+    whatsappCheckout() {
+        const summary = this.getCartSummary();
+        const total = this.getTotal();
+        const phoneNumber = '212708897624';
+
+        const message = `*New SpaceGoods Order!*\n\nHello! I'd like to place the following order:\n\n${summary}\n\n*Total: $${total.toFixed(2)}*\n\nPlease let me know the next steps. Thank you!`;
+
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+        // Redirect to WhatsApp in a new tab
+        window.open(whatsappUrl, '_blank');
+        
+        // Optional: clear cart after sending to WhatsApp. Let's leave it for now.
+        // this.clearCart();
     }
 
     /**

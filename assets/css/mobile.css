@@ -744,11 +744,14 @@ body.no-scroll {
 .btn-svg-wrapper {
     position: relative;
     display: inline-block;
+    line-height: 0; /* Remove extra space */
 }
 
 .btn-svg-wrapper .btn-svg {
     transition: opacity 0.5s ease;
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 /* Create hover effect with colored buttons */
@@ -765,6 +768,7 @@ body.no-scroll {
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    z-index: 2; /* Above the original image */
 }
 
 /* Shop Now button - swap to colored version on hover */

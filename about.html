@@ -3,38 +3,346 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>About | SpaceGoods</title>
+    <title>About | SpaceGoods - Our Story</title>
     <style>
-        body { font-family: ui-sans-serif, system-ui; margin: 0; padding: 0; color: #0f0f10; }
-        nav { background: #0f0f10; padding: 20px 60px; }
-        nav a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: 600; }
-        nav a:hover { color: #ea2225; }
-        .hero { padding: 120px 60px; background: #ea2225; color: #fff; text-align: center; transform: rotate(-0.5deg); }
-        .hero h1 { font-size: 84px; font-weight: 900; margin-bottom: 30px; line-height: 0.95; letter-spacing: -3px; }
-        .hero p { font-size: 24px; max-width: 800px; margin: 0 auto; }
-        .content { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
-        .story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; }
-        .story img { width: 100%; transform: rotate(-2deg); }
-        .story:nth-child(even) { direction: rtl; }
-        .story:nth-child(even) > * { direction: ltr; }
-        h2 { font-size: 48px; font-weight: 900; margin-bottom: 25px; transform: rotate(1deg); }
-        p { font-size: 18px; line-height: 1.7; color: #5f6268; }
-        .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 80px; }
-        .value-card { border: 4px solid #0f0f10; padding: 40px; text-align: center; }
-        .value-card:nth-child(1) { transform: rotate(-1deg); }
+        :root {
+            --bg: #ffffff;
+            --fg: #0f0f10;
+            --red: #ea2225;
+            --muted: #5f6268;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            color: var(--fg);
+            background: var(--bg);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid var(--fg);
+            z-index: 100;
+            transform: rotate(-0.3deg);
+        }
+
+        .topbar {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-svg {
+            height: 60px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transform: rotate(0.5deg);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--fg);
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 2px solid var(--fg);
+            background: var(--bg);
+            transition: all 0.2s;
+            transform: rotate(-1deg);
+        }
+
+        nav a:nth-child(2) { transform: rotate(1deg); }
+        nav a:nth-child(3) { transform: rotate(-0.5deg); }
+
+        nav a.active {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        nav a:hover {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .nav-cart {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(2deg);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 120px 60px;
+            background: var(--red);
+            color: var(--bg);
+            text-align: center;
+            transform: rotate(-0.8deg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "★";
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            font-size: 80px;
+            opacity: 0.2;
+            transform: rotate(-25deg);
+        }
+
+        .hero::after {
+            content: "★";
+            position: absolute;
+            bottom: 30px;
+            right: 10%;
+            font-size: 100px;
+            opacity: 0.15;
+            transform: rotate(35deg);
+        }
+
+        .hero h1 {
+            font-size: 84px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            transform: rotate(1deg);
+        }
+
+        .hero p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Content */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 60px;
+        }
+
+        .story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        .story img {
+            width: 100%;
+            max-width: 500px;
+            transform: rotate(-2deg);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.12));
+        }
+
+        .story:nth-child(even) {
+            direction: rtl;
+        }
+
+        .story:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        h2 {
+            font-size: 58px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            transform: rotate(1deg);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .story p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .value-card {
+            border: 4px solid var(--fg);
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .value-card:nth-child(1) { transform: rotate(-1.2deg); }
         .value-card:nth-child(2) { transform: rotate(1.5deg); }
         .value-card:nth-child(3) { transform: rotate(-0.8deg); }
-        .value-icon { font-size: 64px; margin-bottom: 20px; }
-        @media (max-width: 900px) { .story, .values { grid-template-columns: 1fr; } .hero h1 { font-size: 48px; } }
+
+        .value-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .value-icon {
+            font-size: 72px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .value-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .value-card p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 60px 40px;
+            border-top: 4px solid var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(-0.5deg);
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        footer h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--bg);
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 12px;
+        }
+
+        footer ul li a {
+            color: var(--bg) !important;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        footer ul li a:hover {
+            transform: translateX(5px);
+            color: var(--red) !important;
+        }
+
+        footer p {
+            color: var(--bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 2px solid var(--bg);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .story, .values {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 58px;
+            }
+            h2 {
+                font-size: 42px;
+            }
+            .story img {
+                max-width: 100%;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            .topbar {
+                padding: 15px 20px;
+            }
+            .logo-svg {
+                height: 45px;
+            }
+            nav {
+                flex-wrap: wrap;
+            }
+            .hero, .content {
+                padding: 60px 20px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+    <!-- Header -->
+    <header>
+        <div class="topbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="logo-svg">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="#cart" class="nav-cart">Cart (0)</a>
+            </nav>
+        </div>
+    </header>
 
     <div class="hero">
         <h1>About SpaceGoods</h1>
@@ -46,7 +354,7 @@
             <div>
                 <h2>Our Story</h2>
                 <p>SpaceGoods was born from a simple idea: the universe is vast, life is short, and everyone deserves to chill. We create premium edibles and merch that embody the slow, peaceful energy of floating through space.</p>
-                <p>Our iconic sleepy planet character represents the universal need to slow down, breathe, and enjoy the cosmic journey.</p>
+                <p>Our iconic sleepy planet character represents the universal need to slow down, breathe, and enjoy the cosmic journey. Every product we make is an invitation to float, relax, and experience life at a cosmic pace.</p>
             </div>
             <img src="assets/img/SVG/masterillustration.svg" alt="SpaceGoods">
         </div>
@@ -55,29 +363,76 @@
             <div>
                 <h2>Hand-Drawn Everything</h2>
                 <p>Every illustration, every button, every design element is hand-drawn with love. We reject digital perfection in favor of organic, imperfect, human creativity.</p>
-                <p>Our black and white aesthetic with halftone textures pays homage to zines, underground comics, and print culture.</p>
+                <p>Our black and white aesthetic with halftone textures pays homage to zines, underground comics, and print culture. It's raw, it's real, it's us.</p>
             </div>
             <img src="assets/img/SVG/chill.svg" alt="Chill Planet">
         </div>
 
-        <h2 style="text-align: center; margin-top: 100px;">Our Values</h2>
+        <h2 style="text-align: center; margin-top: 100px; margin-bottom: 40px;">Our Values</h2>
+
         <div class="values">
             <div class="value-card">
-                <div class="value-icon">🌱</div>
+                <span class="value-icon">🌱</span>
                 <h3>100% Organic</h3>
-                <p>All natural ingredients, no artificial anything. Just pure cosmic goodness.</p>
+                <p>All natural ingredients, no artificial anything. Just pure cosmic goodness from the finest gardens in the galaxy.</p>
             </div>
+
             <div class="value-card">
-                <div class="value-icon">🧪</div>
+                <span class="value-icon">🧪</span>
                 <h3>Lab Tested</h3>
-                <p>Every batch tested for quality, potency, and safety. We take care seriously.</p>
+                <p>Every batch rigorously tested for quality, potency, and safety. We take your cosmic journey seriously.</p>
             </div>
+
             <div class="value-card">
-                <div class="value-icon">🎨</div>
+                <span class="value-icon">🎨</span>
                 <h3>Hand-Crafted</h3>
-                <p>Made with love, care, and attention to every cosmic detail.</p>
+                <p>Made with love, care, and attention to every cosmic detail. Each product is a work of art.</p>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="footer-logo">
+                <p>Bringing cosmic chill to Earth, one planet at a time.</p>
+            </div>
+
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#edibles">Edibles</a></li>
+                    <li><a href="#cookies">Cookies</a></li>
+                    <li><a href="#merch">Merch</a></li>
+                    <li><a href="#limited">Limited</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#terms">Terms</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#shipping">Shipping</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SpaceGoods. All rights reserved. Stay chill. 🌍✨</p>
+        </div>
+    </footer>
 </body>
 </html>

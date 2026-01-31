@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Message Sent! | SpaceGoods</title>
+    <meta name="description" content="Thanks for reaching out to SpaceGoods. We'll get back to you shortly.">
+    <meta name="theme-color" content="#EAE9E6">
+    <meta name="robots" content="noindex">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/SVG/logo.svg">
+    <link rel="apple-touch-icon" href="assets/img/SVG/logo.svg">
+
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <style>
+        :root {
+            --bg: #EAE9E6;
+            --fg: #0f0f10;
+            --red: #ea2225;
+            --muted: #5f6268;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            color: var(--fg);
+            background: var(--bg);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid var(--fg);
+            z-index: 100;
+            transform: rotate(-0.3deg);
+        }
+
+        .topbar {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-svg {
+            height: 60px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transform: rotate(0.5deg);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--fg);
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 2px solid var(--fg);
+            background: var(--bg);
+            transition: all 0.2s;
+            transform: rotate(-1deg);
+        }
+
+        nav a:nth-child(2) { transform: rotate(1deg); }
+        nav a:nth-child(3) { transform: rotate(-0.5deg); }
+
+        nav a:hover {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        .nav-cart {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(2deg);
+        }
+
+        /* Page Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 60px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 84px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            transform: rotate(-1deg);
+            letter-spacing: -3px;
+            line-height: 0.95;
+            color: var(--red);
+        }
+
+        .intro {
+            font-size: 22px;
+            color: var(--muted);
+            margin-bottom: 80px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--bg);
+            background: var(--fg);
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border: 3px solid var(--fg);
+            transition: all 0.3s;
+            transform: rotate(1deg);
+        }
+
+        .btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 60px 40px;
+            border-top: 4px solid var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(-0.5deg);
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        footer h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--bg);
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 12px;
+        }
+
+        footer ul li a {
+            color: var(--bg) !important;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        footer ul li a:hover {
+            transform: translateX(5px);
+            color: var(--red) !important;
+        }
+
+        footer p {
+            color: var(--bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 2px solid var(--bg);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 58px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="topbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="logo-svg">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="#cart" class="nav-cart">Cart (0)</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Message Sent!</h1>
+        <p class="intro">Thanks for reaching out. We've received your message and will get back to you faster than a shooting star (usually within 24-48 hours).</p>
+        <a href="index.html" class="btn">Back to Home</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="footer-logo">
+                <p>Bringing cosmic chill to Earth, one planet at a time.</p>
+            </div>
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">Edibles</a></li>
+                    <li><a href="products.html">Cookies</a></li>
+                    <li><a href="products.html">Merch</a></li>
+                    <li><a href="products.html">Limited</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SpaceGoods. All rights reserved. Stay chill. 🌍✨</p>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="assets/js/mobile-nav.js" defer></script>
+    <script src="assets/js/scroll-animations.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+</body>
+</html>

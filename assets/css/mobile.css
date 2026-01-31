@@ -700,7 +700,7 @@ body.no-scroll {
 }
 
 /* ================================================
-   11.6 BUTTON HOVER ANIMATIONS (Color Swap)
+   11.6 BUTTON HOVER ANIMATIONS (Color Fill)
    ================================================ */
 
 .btn-svg-wrapper {
@@ -709,7 +709,8 @@ body.no-scroll {
 }
 
 .btn-svg-wrapper .btn-svg {
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.5s ease;
+    display: block;
 }
 
 /* Create hover effect with colored buttons */
@@ -724,7 +725,7 @@ body.no-scroll {
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s ease;
     pointer-events: none;
 }
 
@@ -749,21 +750,17 @@ a[href*="products"] .btn-svg-wrapper::before,
     background-image: url('../img/SVG/cookiebuttoncolor.svg');
 }
 
-/* Hover state - fade in colored version */
+/* Hover state - smooth color fill */
 .btn-svg-wrapper:hover::before {
     opacity: 1;
 }
 
 .btn-svg-wrapper:hover .btn-svg {
     opacity: 0;
-    transform: scale(1.05);
 }
 
-/* Enhanced hover with rotation and lift */
-.btn-svg-wrapper:hover {
-    transform: translateY(-8px) rotate(0deg) !important;
-    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
-}
+/* NO movement, NO scale - just color fill */
+/* Keep existing rotation from parent styles */
 
 /* Mobile touch enhancement */
 @media (max-width: 900px) {

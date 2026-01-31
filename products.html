@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Products | SpaceGoods</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: ui-sans-serif, system-ui; margin: 0; padding: 0; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 100px 60px; }
+        h1 { font-size: 72px; font-weight: 900; margin-bottom: 60px; transform: rotate(-1deg); }
+        .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
+        .product-card { border: 4px solid #0f0f10; padding: 40px; background: #fff; transition: all 0.3s; }
+        .product-card:nth-child(1) { transform: rotate(-1.5deg); }
+        .product-card:nth-child(2) { transform: rotate(1deg); }
+        .product-card:nth-child(3) { transform: rotate(-0.8deg); }
+        .product-card:nth-child(4) { transform: rotate(2deg); }
+        .product-card:nth-child(5) { transform: rotate(-1.2deg); }
+        .product-card:nth-child(6) { transform: rotate(0.9deg); }
+        .product-card:hover { transform: rotate(0deg) scale(1.02); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .product-img { width: 100%; height: 300px; object-fit: contain; margin-bottom: 25px; }
+        .product-card h3 { font-size: 28px; margin-bottom: 15px; font-weight: 800; }
+        .product-card p { color: #5f6268; font-size: 17px; margin-bottom: 20px; }
+        .price { font-size: 32px; font-weight: 900; color: #ea2225; margin-bottom: 25px; }
+        .btn { padding: 16px 32px; font-size: 16px; font-weight: 700; border: 3px solid #0f0f10; background: #0f0f10; color: #fff; cursor: pointer; text-transform: uppercase; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .btn:hover { background: #ea2225; border-color: #ea2225; transform: scale(1.05); }
+        nav { background: #0f0f10; padding: 20px 60px; margin-bottom: 0; }
+        nav a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: 600; }
+        nav a:hover { color: #ea2225; }
+        @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr; } h1 { font-size: 48px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h1>Cosmic Products</h1>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="assets/img/SVG/chill.svg" class="product-img" alt="Space Cookies">
+                <h3>Space Cookies</h3>
+                <p>Chill cookies infused with cosmic vibes. Perfect for relaxation.</p>
+                <div class="price">$24.99</div>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/img/SVG/sandwich.svg" class="product-img" alt="Cosmic Sandwich">
+                <h3>Love Sandwich</h3>
+                <p>Premium edible sandwich, handcrafted with love and space dust.</p>
+                <div class="price">$19.99</div>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/img/SVG/yoga.svg" class="product-img" alt="Zen Package">
+                <h3>Zen Package</h3>
+                <p>Ultimate relaxation pack with yoga-inspired cosmic treats.</p>
+                <div class="price">$34.99</div>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/img/SVG/work.svg" class="product-img" alt="Work Boost">
+                <h3>Work Boost</h3>
+                <p>Stay focused and productive with our cosmic work blend.</p>
+                <div class="price">$29.99</div>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/img/SVG/sexy.svg" class="product-img" alt="Cosmic Love">
+                <h3>Cosmic Love</h3>
+                <p>Special edition for romantic cosmic adventures.</p>
+                <div class="price">$39.99</div>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="product-card">
+                <img src="assets/img/SVG/merch.svg" class="product-img" alt="Merch Pack">
+                <h3>Merch Pack</h3>
+                <p>Complete SpaceGoods merch collection in one cosmic package.</p>
+                <div class="price">$49.99</div>
+                <a href="#" class="btn">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

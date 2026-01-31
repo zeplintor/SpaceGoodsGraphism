@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SpaceGoods | Chill Cosmic Edibles</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #0f0f10;
+            --red: #ea2225;
+            --muted: #5f6268;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            color: var(--fg);
+            background: var(--bg);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid var(--fg);
+            z-index: 100;
+            transform: rotate(-0.3deg);
+        }
+
+        .topbar {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-svg {
+            height: 60px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transform: rotate(0.5deg);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--fg);
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 2px solid var(--fg);
+            background: var(--bg);
+            transition: all 0.2s;
+            transform: rotate(-1deg);
+        }
+
+        nav a:nth-child(2) {
+            transform: rotate(1deg);
+        }
+
+        nav a:nth-child(3) {
+            transform: rotate(-0.5deg);
+        }
+
+        nav a:hover {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .nav-cart {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(2deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 60px 160px;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 100px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 20%;
+            left: -5%;
+            width: 200px;
+            height: 200px;
+            border: 4px solid var(--fg);
+            transform: rotate(25deg);
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            transform: rotate(-0.5deg);
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            padding: 12px 20px;
+            border: 3px solid var(--fg);
+            width: fit-content;
+            font-size: 14px;
+            font-weight: 700;
+            background: var(--red);
+            color: var(--bg);
+            transform: rotate(-2deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 84px;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            font-weight: 900;
+            transform: rotate(1deg);
+        }
+
+        .hero-description {
+            font-size: 22px;
+            color: var(--muted);
+            line-height: 1.5;
+            max-width: 650px;
+            transform: rotate(-0.3deg);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .btn-svg-wrapper {
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-svg-wrapper:hover {
+            transform: translateY(-5px) scale(1.05) rotate(-2deg);
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+        }
+
+        .btn-svg-wrapper:nth-child(1) {
+            transform: rotate(-1deg);
+        }
+
+        .btn-svg-wrapper:nth-child(2) {
+            transform: rotate(2deg);
+        }
+
+        .btn-svg {
+            width: auto;
+            height: 75px;
+            display: block;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 700px;
+        }
+
+        .planet-illustration {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+            transform: rotate(-2deg);
+        }
+
+        .orbit-element {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.4;
+        }
+
+        .orbit-element.meteor {
+            top: 5%;
+            right: 5%;
+            animation: rotate 25s linear infinite;
+            transform: rotate(45deg);
+        }
+
+        .orbit-element.planets {
+            bottom: 8%;
+            left: 0%;
+            width: 180px;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-25px) rotate(1deg); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Merch Section */
+        .merch-section {
+            padding: 100px 60px;
+            background: var(--fg);
+            color: var(--bg);
+            position: relative;
+            transform: rotate(-1deg);
+            margin: 80px 0;
+        }
+
+        .merch-section::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            border: 5px solid var(--bg);
+            transform: rotate(-15deg);
+        }
+
+        .section-title {
+            font-size: 68px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            transform: rotate(1deg);
+            letter-spacing: -2px;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .merch-item {
+            background: var(--bg);
+            color: var(--fg);
+            padding: 50px 35px;
+            border: 4px solid var(--bg);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .merch-item:nth-child(1) { transform: rotate(-2deg); }
+        .merch-item:nth-child(2) { transform: rotate(1deg); }
+        .merch-item:nth-child(3) { transform: rotate(-1.5deg); }
+
+        .merch-item:hover {
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .merch-icon {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+        }
+
+        .merch-item h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .merch-item p {
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .merch-item .btn-svg-wrapper {
+            transform: rotate(-1deg);
+        }
+
+        .merch-item .btn-svg {
+            height: 60px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 120px 60px;
+            position: relative;
+        }
+
+        .gallery::after {
+            content: "";
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 200px;
+            height: 3px;
+            background: var(--fg);
+            transform: rotate(-5deg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border: 4px solid var(--fg);
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .gallery-item:nth-child(1) { transform: rotate(2deg); }
+        .gallery-item:nth-child(2) { transform: rotate(-1deg); }
+        .gallery-item:nth-child(3) { transform: rotate(1.5deg); }
+        .gallery-item:nth-child(4) { transform: rotate(-2deg); }
+        .gallery-item:nth-child(5) { transform: rotate(-1.5deg); }
+        .gallery-item:nth-child(6) { transform: rotate(2.5deg); }
+        .gallery-item:nth-child(7) { transform: rotate(-0.5deg); }
+        .gallery-item:nth-child(8) { transform: rotate(1deg); }
+
+        .gallery-item:hover {
+            transform: rotate(0deg) scale(1.05);
+            z-index: 10;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 100px 60px;
+            background: var(--red);
+            color: var(--bg);
+            text-align: center;
+            transform: rotate(1deg);
+            margin: 80px 0;
+            position: relative;
+        }
+
+        .newsletter::before {
+            content: "★";
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            font-size: 60px;
+            opacity: 0.3;
+            transform: rotate(-15deg);
+        }
+
+        .newsletter::after {
+            content: "★";
+            position: absolute;
+            bottom: 20px;
+            right: 10%;
+            font-size: 80px;
+            opacity: 0.2;
+            transform: rotate(25deg);
+        }
+
+        .newsletter h2 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 25px;
+            transform: rotate(-1deg);
+            letter-spacing: -2px;
+        }
+
+        .newsletter p {
+            font-size: 24px;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: rotate(0.5deg);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .newsletter input {
+            flex: 1;
+            min-width: 300px;
+            padding: 18px 25px;
+            font-size: 18px;
+            border: 3px solid var(--fg);
+            background: var(--bg);
+            color: var(--fg);
+            font-weight: 600;
+            transform: rotate(-1deg);
+        }
+
+        .newsletter input:focus {
+            outline: none;
+            transform: rotate(0deg);
+        }
+
+        .newsletter button {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border: 3px solid var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: rotate(2deg);
+        }
+
+        .newsletter button:hover {
+            transform: rotate(0deg) scale(1.05);
+            background: var(--bg);
+            color: var(--fg);
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .feature-card {
+            padding: 50px 40px;
+            border: 4px solid var(--fg);
+            background: var(--bg);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:nth-child(1) { transform: rotate(-1deg); }
+        .feature-card:nth-child(2) { transform: rotate(1.5deg); }
+        .feature-card:nth-child(3) { transform: rotate(-0.8deg); }
+
+        .feature-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+        }
+
+        .feature-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .feature-card h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 60px 40px;
+            border-top: 4px solid var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(-0.5deg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        footer h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--bg);
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 12px;
+        }
+
+        footer ul li a {
+            color: var(--bg) !important;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        footer ul li a:hover {
+            transform: translateX(5px);
+            color: var(--red) !important;
+        }
+
+        footer p {
+            color: var(--bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 2px solid var(--bg);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .merch-grid, .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                padding: 80px 40px;
+            }
+            .hero h1 { font-size: 58px; }
+            .section-title { font-size: 48px; }
+            .merch-grid, .features, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 42px; }
+            .topbar { padding: 15px 20px; }
+            .logo-svg { height: 45px; }
+            nav { flex-wrap: wrap; }
+            .merch-section, .newsletter, .features, .gallery {
+                padding: 60px 20px;
+            }
+            .newsletter h2 { font-size: 48px; }
+            .newsletter-form { flex-direction: column; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="topbar">
+            <a href="#" class="logo">
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="logo-svg">
+            </a>
+            <nav>
+                <a href="#products">Products</a>
+                <a href="#merch">Merch</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#about">About</a>
+                <a href="#cart" class="nav-cart">Cart (0)</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">New cosmic drop</div>
+
+            <h1>Chill vibes from outer space</h1>
+
+            <p class="hero-description">
+                Premium space-inspired edibles crafted for those who appreciate the art of slowing down.
+                Organic, hand-made, and perfectly dosed for your cosmic journey.
+            </p>
+
+            <div class="hero-cta">
+                <a href="#shop" class="btn-svg-wrapper">
+                    <img src="assets/img/SVG/shopnow.svg" alt="Shop now" class="btn-svg">
+                </a>
+                <a href="#learn" class="btn-svg-wrapper">
+                    <img src="assets/img/SVG/learnmore.svg" alt="Learn more" class="btn-svg">
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <img src="assets/img/SVG/meteor.svg" alt="" class="orbit-element meteor">
+            <img src="assets/img/SVG/planets.svg" alt="" class="orbit-element planets">
+            <img src="assets/img/SVG/masterillustration.svg" alt="SpaceGoods" class="planet-illustration">
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="assets/img/SVG/yoga.svg" alt="Organic">
+            </div>
+            <h3>100% Organic</h3>
+            <p>All natural ingredients sourced from the finest cosmic gardens. No artificial additives, just pure planetary goodness.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="assets/img/SVG/sandwich.svg" alt="Quality">
+            </div>
+            <h3>Lab Tested</h3>
+            <p>Every batch is rigorously tested for potency, purity, and planetary safety standards. Quality you can trust.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="assets/img/SVG/merch.svg" alt="Delivery">
+            </div>
+            <h3>Slow Delivery</h3>
+            <p>We take our time. Good things come to those who wait, floating peacefully through space and time.</p>
+        </div>
+    </section>
+
+    <!-- Merch Section -->
+    <section class="merch-section" id="merch">
+        <h2 class="section-title">Cosmic Merch</h2>
+
+        <div class="merch-grid">
+            <div class="merch-item">
+                <div class="merch-icon">
+                    <img src="assets/img/SVG/chill.svg" alt="Edibles">
+                </div>
+                <h3>Space Edibles</h3>
+                <p>Premium cookies, gummies, and treats infused with cosmic chill. Perfect for your interstellar journey.</p>
+                <a href="#edibles" class="btn-svg-wrapper">
+                    <img src="assets/img/SVG/cookiebutton.svg" alt="Get cookies" class="btn-svg">
+                </a>
+            </div>
+
+            <div class="merch-item">
+                <div class="merch-icon">
+                    <img src="assets/img/SVG/yoga.svg" alt="Apparel">
+                </div>
+                <h3>Chill Apparel</h3>
+                <p>T-shirts, hoodies, and accessories featuring our iconic planet character. Wear the vibe.</p>
+                <a href="#apparel" class="btn-svg-wrapper">
+                    <img src="assets/img/SVG/buynow.svg" alt="Buy now" class="btn-svg">
+                </a>
+            </div>
+
+            <div class="merch-item">
+                <div class="merch-icon">
+                    <img src="assets/img/SVG/sandwich.svg" alt="Limited">
+                </div>
+                <h3>Limited Drops</h3>
+                <p>Exclusive collections and collaborations. Once they're gone, they're floating away forever.</p>
+                <a href="#limited" class="btn-svg-wrapper">
+                    <img src="assets/img/SVG/shopnow.svg" alt="Shop limited" class="btn-svg">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Cosmic Gallery</h2>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="assets/img/SVG/chill.svg" alt="Gallery 1">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/work.svg" alt="Gallery 2">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/sandwich.svg" alt="Gallery 3">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/sexy.svg" alt="Gallery 4">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/planets.svg" alt="Gallery 5">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/merch.svg" alt="Gallery 6">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/yoga.svg" alt="Gallery 7">
+            </div>
+            <div class="gallery-item">
+                <img src="assets/img/SVG/meteor.svg" alt="Gallery 8">
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>Stay in Orbit</h2>
+        <p>Join our cosmic newsletter for exclusive drops, stellar deals, and chill vibes delivered to your inbox.</p>
+
+        <div class="newsletter-form">
+            <input type="email" placeholder="your@email.com">
+            <button type="submit">Subscribe</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="footer-logo">
+                <p>Bringing cosmic chill to Earth, one planet at a time.</p>
+            </div>
+
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#edibles">Edibles</a></li>
+                    <li><a href="#cookies">Cookies</a></li>
+                    <li><a href="#merch">Merch</a></li>
+                    <li><a href="#limited">Limited</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#terms">Terms</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#shipping">Shipping</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SpaceGoods. All rights reserved. Stay chill. 🌍✨</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

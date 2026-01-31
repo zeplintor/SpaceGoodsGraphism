@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact | SpaceGoods</title>
+    <style>
+        body { font-family: ui-sans-serif, system-ui; margin: 0; padding: 0; color: #0f0f10; }
+        nav { background: #0f0f10; padding: 20px 60px; }
+        nav a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: 600; }
+        nav a:hover { color: #ea2225; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 60px; }
+        h1 { font-size: 72px; font-weight: 900; margin-bottom: 40px; transform: rotate(-1deg); text-align: center; }
+        .intro { font-size: 22px; color: #5f6268; text-align: center; margin-bottom: 80px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        .contact-card { border: 4px solid #0f0f10; padding: 40px; text-align: center; }
+        .contact-card:nth-child(1) { transform: rotate(-1.5deg); }
+        .contact-card:nth-child(2) { transform: rotate(1.2deg); }
+        .contact-card h3 { font-size: 28px; margin-bottom: 20px; font-weight: 800; }
+        .contact-card p { font-size: 18px; color: #5f6268; }
+        .contact-card a { color: #ea2225; font-weight: 700; text-decoration: none; }
+        form { background: #fafafa; border: 4px solid #0f0f10; padding: 50px; transform: rotate(0.5deg); }
+        form h2 { font-size: 36px; margin-bottom: 30px; font-weight: 900; }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 16px; }
+        input, textarea { width: 100%; padding: 15px; font-size: 16px; border: 3px solid #0f0f10; background: #fff; font-family: inherit; }
+        input:focus, textarea:focus { outline: none; border-color: #ea2225; }
+        textarea { min-height: 150px; resize: vertical; }
+        button { width: 100%; padding: 18px; font-size: 18px; font-weight: 800; border: 3px solid #0f0f10; background: #0f0f10; color: #fff; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+        button:hover { background: #ea2225; border-color: #ea2225; transform: scale(1.02); }
+        @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } h1 { font-size: 48px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h1>Get in Touch</h1>
+        <p class="intro">Have questions? Want to collaborate? Need cosmic advice? We're floating through space but we'll get back to you.</p>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>📧 Email</h3>
+                <p><a href="mailto:hello@spacegoods.co">hello@spacegoods.co</a></p>
+            </div>
+            <div class="contact-card">
+                <h3>📱 Social</h3>
+                <p>
+                    <a href="#">@spacegoods</a><br>
+                    Instagram, Twitter, TikTok
+                </p>
+            </div>
+        </div>
+
+        <form>
+            <h2>Send us a message</h2>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

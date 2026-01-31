@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About | SpaceGoods</title>
+    <style>
+        body { font-family: ui-sans-serif, system-ui; margin: 0; padding: 0; color: #0f0f10; }
+        nav { background: #0f0f10; padding: 20px 60px; }
+        nav a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: 600; }
+        nav a:hover { color: #ea2225; }
+        .hero { padding: 120px 60px; background: #ea2225; color: #fff; text-align: center; transform: rotate(-0.5deg); }
+        .hero h1 { font-size: 84px; font-weight: 900; margin-bottom: 30px; line-height: 0.95; letter-spacing: -3px; }
+        .hero p { font-size: 24px; max-width: 800px; margin: 0 auto; }
+        .content { max-width: 1200px; margin: 0 auto; padding: 100px 60px; }
+        .story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; }
+        .story img { width: 100%; transform: rotate(-2deg); }
+        .story:nth-child(even) { direction: rtl; }
+        .story:nth-child(even) > * { direction: ltr; }
+        h2 { font-size: 48px; font-weight: 900; margin-bottom: 25px; transform: rotate(1deg); }
+        p { font-size: 18px; line-height: 1.7; color: #5f6268; }
+        .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 80px; }
+        .value-card { border: 4px solid #0f0f10; padding: 40px; text-align: center; }
+        .value-card:nth-child(1) { transform: rotate(-1deg); }
+        .value-card:nth-child(2) { transform: rotate(1.5deg); }
+        .value-card:nth-child(3) { transform: rotate(-0.8deg); }
+        .value-icon { font-size: 64px; margin-bottom: 20px; }
+        @media (max-width: 900px) { .story, .values { grid-template-columns: 1fr; } .hero h1 { font-size: 48px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="hero">
+        <h1>About SpaceGoods</h1>
+        <p>Bringing cosmic chill to Earth, one planet at a time. We're not just a brand, we're a vibe.</p>
+    </div>
+
+    <div class="content">
+        <div class="story">
+            <div>
+                <h2>Our Story</h2>
+                <p>SpaceGoods was born from a simple idea: the universe is vast, life is short, and everyone deserves to chill. We create premium edibles and merch that embody the slow, peaceful energy of floating through space.</p>
+                <p>Our iconic sleepy planet character represents the universal need to slow down, breathe, and enjoy the cosmic journey.</p>
+            </div>
+            <img src="assets/img/SVG/masterillustration.svg" alt="SpaceGoods">
+        </div>
+
+        <div class="story">
+            <div>
+                <h2>Hand-Drawn Everything</h2>
+                <p>Every illustration, every button, every design element is hand-drawn with love. We reject digital perfection in favor of organic, imperfect, human creativity.</p>
+                <p>Our black and white aesthetic with halftone textures pays homage to zines, underground comics, and print culture.</p>
+            </div>
+            <img src="assets/img/SVG/chill.svg" alt="Chill Planet">
+        </div>
+
+        <h2 style="text-align: center; margin-top: 100px;">Our Values</h2>
+        <div class="values">
+            <div class="value-card">
+                <div class="value-icon">🌱</div>
+                <h3>100% Organic</h3>
+                <p>All natural ingredients, no artificial anything. Just pure cosmic goodness.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🧪</div>
+                <h3>Lab Tested</h3>
+                <p>Every batch tested for quality, potency, and safety. We take care seriously.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎨</div>
+                <h3>Hand-Crafted</h3>
+                <p>Made with love, care, and attention to every cosmic detail.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

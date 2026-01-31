@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>About | SpaceGoods - Our Story</title>
+    <link rel="stylesheet" href="assets/css/mobile.css">
     <style>
         :root {
             --bg: #EAE9E6;
@@ -328,6 +329,31 @@
     </style>
 </head>
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer">
+        <img src="assets/img/SVG/logo.svg" alt="SpaceGoods" class="drawer-logo">
+        <nav class="drawer-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <img src="assets/img/SVG/meteor.svg" alt="" class="drawer-decoration">
+    </div>
+    <div class="drawer-overlay"></div>
+
+    <!-- Floating Cart FAB -->
+    <div class="cart-fab">
+        🛒 <span class="cart-badge">0</span>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="topbar">
@@ -434,5 +460,10 @@
             <p>© 2026 SpaceGoods. All rights reserved. Stay chill. 🌍✨</p>
         </div>
     </footer>
+    <!-- Scripts -->
+    <script src="assets/js/mobile-nav.js" defer></script>
+    <script src="assets/js/scroll-animations.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+
 </body>
 </html>

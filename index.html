@@ -5,6 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>SpaceGoods | Chill Cosmic Edibles</title>
+    <meta name="theme-color" content="#EAE9E6">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/img/SVG/logo.svg" as="image">
+    <link rel="preload" href="assets/img/SVG/masterillustration.svg" as="image">
+
+    <!-- Mobile CSS -->
+    <link rel="stylesheet" href="assets/css/mobile.css">
+
     <style>
         :root {
             --bg: #EAE9E6;
@@ -615,6 +624,31 @@
 </head>
 
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer">
+        <img src="assets/img/SVG/logo.svg" alt="SpaceGoods" class="drawer-logo">
+        <nav class="drawer-nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <img src="assets/img/SVG/meteor.svg" alt="" class="drawer-decoration">
+    </div>
+    <div class="drawer-overlay"></div>
+
+    <!-- Floating Cart FAB -->
+    <div class="cart-fab">
+        🛒 <span class="cart-badge">0</span>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="topbar">
@@ -633,6 +667,9 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Mobile Logo (hidden on desktop) -->
+        <img src="assets/img/SVG/logo.svg" alt="SpaceGoods" class="hero-logo-mobile mobile-only">
+
         <div class="hero-content">
             <div class="hero-tag">New cosmic drop</div>
 
@@ -643,7 +680,7 @@
                 Organic, hand-made, and perfectly dosed for your cosmic journey.
             </p>
 
-            <div class="hero-cta">
+            <div class="hero-cta hero-buttons">
                 <a href="products.html" class="btn-svg-wrapper">
                     <img src="assets/img/SVG/shopnow.svg" alt="Shop now" class="btn-svg">
                 </a>
@@ -654,15 +691,23 @@
         </div>
 
         <div class="hero-visual">
-            <img src="assets/img/SVG/meteor.svg" alt="" class="orbit-element meteor">
-            <img src="assets/img/SVG/planets.svg" alt="" class="orbit-element planets">
-            <img src="assets/img/SVG/masterillustration.svg" alt="SpaceGoods" class="planet-illustration">
+            <img src="assets/img/SVG/meteor.svg" alt="" class="orbit-element meteor floating-element">
+            <img src="assets/img/SVG/planets.svg" alt="" class="orbit-element planets floating-element">
+            <img src="assets/img/SVG/masterillustration.svg" alt="SpaceGoods" class="planet-illustration parallax-element" data-speed="0.3">
         </div>
+
+        <!-- Scroll Indicator (mobile) -->
+        <div class="scroll-indicator mobile-only">↓ Scroll ↓</div>
+    </section>
+
+    <!-- Parallax Illustration Section (Mobile Enhancement) -->
+    <section class="parallax-section mobile-only">
+        <img src="assets/img/SVG/masterillustration.svg" alt="" class="parallax-bg parallax-element" data-speed="0.5">
     </section>
 
     <!-- Features -->
     <section class="features">
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal-left">
             <div class="feature-icon">
                 <img src="assets/img/SVG/organic.svg" alt="Organic">
             </div>
@@ -670,7 +715,7 @@
             <p>All natural ingredients sourced from the finest cosmic gardens. No artificial additives, just pure planetary goodness.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal-scale">
             <div class="feature-icon">
                 <img src="assets/img/SVG/lab.svg" alt="Quality">
             </div>
@@ -678,7 +723,7 @@
             <p>Every batch is rigorously tested for potency, purity, and planetary safety standards. Quality you can trust.</p>
         </div>
 
-        <div class="feature-card">
+        <div class="feature-card scroll-reveal-right">
             <div class="feature-icon">
                 <img src="assets/img/SVG/handcrafted.svg" alt="Handcrafted">
             </div>
@@ -689,10 +734,10 @@
 
     <!-- Merch Section -->
     <section class="merch-section" id="merch">
-        <h2 class="section-title">Cosmic Merch</h2>
+        <h2 class="section-title scroll-reveal">Cosmic Merch</h2>
 
-        <div class="merch-grid">
-            <div class="merch-item">
+        <div class="merch-grid carousel-container">
+            <div class="merch-item carousel-item scroll-reveal">
                 <div class="merch-icon">
                     <img src="assets/img/SVG/chill.svg" alt="Edibles">
                 </div>
@@ -703,7 +748,7 @@
                 </a>
             </div>
 
-            <div class="merch-item">
+            <div class="merch-item carousel-item scroll-reveal">
                 <div class="merch-icon">
                     <img src="assets/img/SVG/yoga.svg" alt="Apparel">
                 </div>
@@ -714,7 +759,7 @@
                 </a>
             </div>
 
-            <div class="merch-item">
+            <div class="merch-item carousel-item scroll-reveal">
                 <div class="merch-icon">
                     <img src="assets/img/SVG/sandwich.svg" alt="Limited">
                 </div>
@@ -729,7 +774,7 @@
 
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
-        <h2 class="section-title">Cosmic Gallery</h2>
+        <h2 class="section-title scroll-reveal">Cosmic Gallery</h2>
 
         <div class="gallery-grid">
             <div class="gallery-item">
@@ -760,7 +805,7 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter">
+    <section class="newsletter scroll-reveal">
         <h2>Stay in Orbit</h2>
         <p>Join our cosmic newsletter for exclusive drops, stellar deals, and chill vibes delivered to your inbox.</p>
 
@@ -813,6 +858,11 @@
             <p>© 2026 SpaceGoods. All rights reserved. Stay chill. 🌍✨</p>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/mobile-nav.js" defer></script>
+    <script src="assets/js/scroll-animations.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
 
 </body>
 

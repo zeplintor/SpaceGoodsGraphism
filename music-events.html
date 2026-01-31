@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SpaceGoods Music | Événements & Festivals Électroniques</title>
+    <meta name="description" content="Découvrez SpaceGoods Music : Là où les beats chill rencontrent l'univers. Événements et festivals de musique électronique aux vibes cosmiques.">
+    <meta name="theme-color" content="#EAE9E6">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/SVG/logo.svg">
+    <link rel="apple-touch-icon" href="assets/img/SVG/logo.svg">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spacegoods.fun/music-events.html">
+    <meta property="og:title" content="SpaceGoods Music | Événements & Festivals Électroniques">
+    <meta property="og:description" content="Découvrez SpaceGoods Music : Là où les beats chill rencontrent l'univers. Événements et festivals de musique électronique aux vibes cosmiques.">
+    <meta property="og:image" content="https://spacegoods.fun/assets/img/SVG/masterillustration.svg">
+    <meta property="og:site_name" content="SpaceGoods">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SpaceGoods Music | Événements & Festivals Électroniques">
+    <meta property="twitter:description" content="Découvrez SpaceGoods Music : Là où les beats chill rencontrent l'univers. Événements et festivals de musique électronique aux vibes cosmiques.">
+    <meta property="twitter:image" content="https://spacegoods.fun/assets/img/SVG/masterillustration.svg">
+
+    <!-- Mobile CSS -->
+    <link rel="stylesheet" href="assets/css/mobile.css">
+
+    <style>
+        /* Reusing global styles from index.html / mobile.css */
+        :root {
+            --bg: #EAE9E6;
+            --fg: #0f0f10;
+            --red: #ea2225;
+            --muted: #5f6268;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            color: var(--fg);
+            background: var(--bg);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid var(--fg);
+            z-index: 100;
+            transform: rotate(-0.3deg);
+        }
+
+        .topbar {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-svg {
+            height: 60px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transform: rotate(0.5deg);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--fg);
+            padding: 10px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 2px solid var(--fg);
+            background: var(--bg);
+            transition: all 0.2s;
+            transform: rotate(-1deg);
+        }
+
+        nav a:nth-child(2) { transform: rotate(1deg); }
+        nav a:nth-child(3) { transform: rotate(-0.5deg); }
+
+        nav a.active {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        nav a:hover {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .nav-cart {
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(2deg);
+        }
+
+        /* Hero Section (Specific to music events) */
+        .hero-music {
+            padding: 120px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--fg) 0%, #3a005a 100%); /* Dark, cosmic gradient */
+            color: var(--bg);
+            position: relative;
+            overflow: hidden;
+            transform: rotate(-0.8deg);
+        }
+
+        .hero-music::before, .hero-music::after {
+            content: "";
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: pulse-light 4s infinite ease-in-out;
+        }
+
+        .hero-music::before {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .hero-music::after {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse-light {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            50% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(0.8); opacity: 0.7; }
+        }
+
+        .hero-music h1 {
+            font-size: 96px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 0.9;
+            letter-spacing: -4px;
+            transform: rotate(1deg);
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+
+        .hero-music p {
+            font-size: 28px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.4;
+            transform: rotate(-0.5deg);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-music .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-music .btn {
+            background: var(--red);
+            color: var(--bg);
+            border-color: var(--red);
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            transform: rotate(1deg);
+            letter-spacing: 1px;
+        }
+
+        .hero-music .btn:hover {
+            background: var(--bg);
+            color: var(--fg);
+            border-color: var(--bg);
+            transform: rotate(-1deg) scale(1.05);
+        }
+
+        /* Section styles - similar to existing content sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 60px;
+        }
+
+        .section-title {
+            font-size: 68px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            transform: rotate(1deg);
+            letter-spacing: -2px;
+            text-align: center;
+        }
+
+        .music-philosophy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .music-philosophy:nth-child(even) {
+            direction: rtl;
+        }
+
+        .music-philosophy:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .music-philosophy img {
+            width: 100%;
+            max-width: 500px;
+            transform: rotate(-2deg);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.12));
+        }
+
+        .music-philosophy h2 {
+            font-size: 58px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            transform: rotate(1deg);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .music-philosophy p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        .event-card {
+            border: 4px solid var(--fg);
+            padding: 40px;
+            background: var(--bg);
+            transition: all 0.3s;
+            position: relative;
+            text-align: center;
+        }
+
+        .event-card:nth-child(1) { transform: rotate(-1.5deg); }
+        .event-card:nth-child(2) { transform: rotate(1deg); }
+        .event-card:nth-child(3) { transform: rotate(-0.8deg); }
+        .event-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+
+        .event-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .event-card .date-location {
+            font-size: 17px;
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .event-card p {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .event-card .btn {
+            background: var(--fg);
+            color: var(--bg);
+            border-color: var(--fg);
+            padding: 12px 25px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            transform: rotate(-1deg);
+            letter-spacing: 1px;
+        }
+
+        .event-card .btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+            transform: rotate(1deg) scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 60px 40px;
+            border-top: 4px solid var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+            transform: rotate(-0.5deg);
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        footer h4 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--bg);
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 12px;
+        }
+
+        footer ul li a {
+            color: var(--bg) !important;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        footer ul li a:hover {
+            transform: translateX(5px);
+            color: var(--red) !important;
+        }
+
+        footer p {
+            color: var(--bg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 2px solid var(--bg);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-music h1 { font-size: 68px; }
+            .hero-music p { font-size: 22px; }
+            .music-philosophy {
+                grid-template-columns: 1fr;
+            }
+            .section-title { font-size: 58px; }
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-music { padding: 80px 20px; }
+            .hero-music h1 { font-size: 48px; }
+            .hero-music p { font-size: 18px; }
+            .section-title { font-size: 42px; }
+            .content-section { padding: 0 20px; }
+            .music-philosophy { gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer">
+        <img src="assets/img/SVG/logo.svg" alt="SpaceGoods" class="drawer-logo">
+        <nav class="drawer-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="music-events.html" class="active">Music Events</a>
+        </nav>
+        <img src="assets/img/SVG/meteor.svg" alt="" class="drawer-decoration">
+    </div>
+    <div class="drawer-overlay"></div>
+
+    <!-- Floating Cart FAB -->
+    <div class="cart-fab">
+        🛒 <span class="cart-badge">0</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="topbar">
+            <a href="index.html" class="logo">
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="logo-svg">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="music-events.html" class="nav-cart active">Music (<span class="nav-cart-badge">0</span>)</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-music">
+        <h1>SpaceGoods Music</h1>
+        <p>Là où les beats chill rencontrent l'univers. Découvrez nos événements et festivals de musique électronique aux vibes cosmiques.</p>
+        <div class="cta-buttons">
+            <a href="#events" class="btn">Voir les Événements</a>
+            <a href="#vibe" class="btn">Notre Philosophie Musicale</a>
+        </div>
+    </section>
+
+    <div class="content-section">
+        <div class="music-philosophy" id="vibe">
+            <div>
+                <h2 class="section-title">Notre Vibe Cosmique</h2>
+                <p>SpaceGoods Music est une extension naturelle de notre philosophie de "chill vibes". Nous cultivons des expériences sonores immersives qui transportent nos auditeurs dans des dimensions où le temps ralentit et l'esprit s'évade.</p>
+                <p>Attendez-vous à des sets de musique électronique soigneusement curatés, allant de l'ambient planant à la deep house mélodique, toujours avec cette touche spatiale et décontractée qui fait la signature de SpaceGoods.</p>
+            </div>
+            <img src="assets/img/SVG/planets.svg" alt="Cosmic Vibe" style="transform: rotate(5deg);">
+        </div>
+
+        <h2 class="section-title" id="events">Prochains Événements</h2>
+
+        <div class="events-grid">
+            <div class="event-card">
+                <h3>Éclipse Sonore - Nuit 1</h3>
+                <p class="date-location">20 Septembre 2026 - Un Lieu Secret</p>
+                <p>Une immersion totale dans les sons d'un autre monde. DJs cosmiques et visuels hypnotiques.</p>
+                <a href="#" class="btn">Infos & Billets</a>
+            </div>
+
+            <div class="event-card">
+                <h3>Festival Galactique - Jour 2</h3>
+                <p class="date-location">21 Septembre 2026 - Le Dôme Céleste</p>
+                <p>Deuxième jour de notre exploration sonore intergalactique. L'énergie monte avec des beats plus profonds.</p>
+                <a href="#" class="btn">Infos & Billets</a>
+            </div>
+
+            <div class="event-card">
+                <h3>Afterparty Orbital</h3>
+                <p class="date-location">22 Septembre 2026 - Le Vaisseau Mère</p>
+                <p>Prolongez l'expérience avec un afterparty exclusif. Ambiance intime et surprises interstellaires.</p>
+                <a href="#" class="btn">Infos & Billets</a>
+            </div>
+
+            <div class="event-card">
+                <h3>Chillout Nebuleux</h3>
+                <p class="date-location">Décembre 2026 - Serre Botanique</p>
+                <p>Une soirée de détente profonde avec des sons ambient et des installations lumineuses apaisantes.</p>
+                <a href="#" class="btn">Infos & Billets</a>
+            </div>
+
+            <div class="event-card">
+                <h3>Aube Céleste</h3>
+                <p class="date-location">Mars 2027 - Rooftop Urbain</p>
+                <p>Accueillez le lever du soleil avec des mélodies inspirantes et une vue panoramique sur la ville.</p>
+                <a href="#" class="btn">Infos & Billets</a>
+            </div>
+
+            <div class="event-card">
+                <h3>Odyssée Sonore</h3>
+                <p class="date-location">Été 2027 - Forêt Enchantée</p>
+                <p>Un voyage sonore au cœur de la nature, avec des beats organiques et une connexion profonde.</p>
+                <a href="#" class="btn">Infos & Billets</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods" class="footer-logo">
+                <p>Bringing cosmic chill to Earth, one planet at a time.</p>
+            </div>
+
+            <div>
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">Edibles</a></li>
+                    <li><a href="products.html">Cookies</a></li>
+                    <li><a href="products.html">Merch</a></li>
+                    <li><a href="products.html">Limited</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 SpaceGoods. All rights reserved. Stay chill. 🌍✨</p>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="assets/js/mobile-nav.js" defer></script>
+    <script src="assets/js/scroll-animations.js" defer></script>
+    <script src="assets/js/cart.js" defer></script>
+</body>
+</html>

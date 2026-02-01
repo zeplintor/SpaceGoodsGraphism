@@ -545,6 +545,180 @@
             line-height: 1.7;
         }
 
+        /* Music Events Promo Section */
+        .music-events-promo {
+            padding: 100px 60px;
+            background: var(--fg);
+            color: var(--bg);
+            text-align: center;
+            transform: rotate(0.8deg);
+            margin: 80px 0;
+            position: relative;
+        }
+
+        .music-events-promo::before {
+            content: "♪";
+            position: absolute;
+            top: 30px;
+            left: 8%;
+            font-size: 80px;
+            opacity: 0.2;
+            transform: rotate(-20deg);
+        }
+
+        .music-events-promo::after {
+            content: "♫";
+            position: absolute;
+            bottom: 30px;
+            right: 8%;
+            font-size: 100px;
+            opacity: 0.15;
+            transform: rotate(25deg);
+        }
+
+        .music-logo-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .music-logo {
+            width: 180px;
+            height: 180px;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        .music-intro {
+            font-size: 22px;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: rotate(-0.5deg);
+        }
+
+        .music-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .music-promo-illustration {
+            transform: rotate(-2deg);
+            transition: all 0.3s;
+            background: var(--bg);
+            padding: 30px;
+            border: 4px solid var(--fg);
+            position: relative;
+        }
+
+        .music-promo-illustration:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--red);
+            color: var(--bg);
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--fg);
+            transform: rotate(-3deg);
+            z-index: 10;
+        }
+
+        .music-promo-illustration img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .event-details {
+            text-align: center;
+            border-top: 3px solid var(--fg);
+            padding-top: 20px;
+            margin-top: 10px;
+        }
+
+        .event-details h4 {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--fg);
+        }
+
+        .event-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--fg);
+            margin-bottom: 5px;
+        }
+
+        .event-time {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .music-promo-text {
+            text-align: left;
+            background: var(--bg);
+            color: var(--fg);
+            padding: 50px 40px;
+            border: 4px solid var(--bg);
+            transform: rotate(1.5deg);
+            transition: all 0.3s;
+        }
+
+        .music-promo-text:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .music-promo-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .music-promo-text p {
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .music-events-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border: 4px solid var(--fg);
+            background: var(--red);
+            color: var(--bg);
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: rotate(-1deg);
+        }
+
+        .music-events-btn:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: var(--fg);
+            color: var(--bg);
+        }
+
         /* Footer */
         footer {
             padding: 80px 60px 40px;
@@ -625,8 +799,11 @@
             }
             .hero h1 { font-size: 58px; }
             .section-title { font-size: 48px; }
-            .merch-grid, .features, .gallery-grid {
+            .merch-grid, .features, .gallery-grid, .music-content-wrapper {
                 grid-template-columns: 1fr;
+            }
+            .music-promo-text {
+                text-align: center;
             }
             .footer-content {
                 grid-template-columns: 1fr 1fr;
@@ -638,7 +815,7 @@
             .topbar { padding: 15px 20px; }
             .logo-svg { height: 45px; }
             nav { flex-wrap: wrap; }
-            .merch-section, .newsletter, .features, .gallery {
+            .merch-section, .newsletter, .features, .gallery, .music-events-promo {
                 padding: 60px 20px;
             }
             .newsletter h2 { font-size: 48px; }
@@ -795,6 +972,32 @@
                 <a href="products.html" class="btn-svg-wrapper">
                     <img src="assets/img/SVG/shopnow.svg" alt="Shop limited" class="btn-svg">
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Events Section -->
+    <section class="music-events-promo" id="music">
+        <div class="music-logo-wrapper scroll-reveal">
+            <img src="assets/img/Asset 1.png" alt="SpaceGoods Music" class="music-logo">
+        </div>
+        <h2 class="section-title scroll-reveal">SpaceGoods Music</h2>
+        <p class="music-intro scroll-reveal">Where chill beats meet the universe. Join us for cosmic music events and festivals.</p>
+
+        <div class="music-content-wrapper">
+            <div class="music-promo-illustration scroll-reveal">
+                <div class="event-badge">Upcoming Event</div>
+                <img src="assets/img/SVG/party.svg" alt="Music Events">
+                <div class="event-details">
+                    <h4>Sonic Eclipse</h4>
+                    <p class="event-date">September 20, 2026</p>
+                    <p class="event-time">9:00 PM - Late</p>
+                </div>
+            </div>
+            <div class="music-promo-text scroll-reveal">
+                <h3>Cosmic Parties & Events</h3>
+                <p>Immersive electronic music experiences under the stars. From ambient soundscapes to deep house grooves, join our intergalactic gatherings where chill beats meet the universe.</p>
+                <a href="music-events.html" class="music-events-btn">Explore Music Events</a>
             </div>
         </div>
     </section>

@@ -1,8 +1,8 @@
 {
-  "name": "netlify-functions",
+  "name": "spacegoodsgraphism",
   "version": "1.0.0",
-  "description": "Netlify Functions for SpaceGoods Music Galaxy",
-  "main": "index.js",
+  "description": "SpaceGoods Music Galaxy Project",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

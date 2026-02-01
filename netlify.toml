@@ -24,3 +24,26 @@
   for = "*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/planets"
+  to = "/.netlify/functions/get-planets"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets/create"
+  to = "/.netlify/functions/create-planet"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets/claim/:id"
+  to = "/.netlify/functions/claim-planet"
+  status = 200
+
+[[redirects]]
+  from = "/api/planets/reset-claims"
+  to = "/.netlify/functions/reset-claims"
+  status = 200

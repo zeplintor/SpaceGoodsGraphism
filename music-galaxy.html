@@ -1,0 +1,1455 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Music Galaxy | SpaceGoods - Explore the Cosmic Soundscape</title>
+    <meta name="description" content="Explore the SpaceGoods Music Galaxy. Each planet is a music track. Click to listen, create your own planet and share your favorite sounds.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/SVG/logo.svg">
+    <link rel="apple-touch-icon" href="assets/img/SVG/logo.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spacegoods.fun/music-galaxy.html">
+    <meta property="og:title" content="Music Galaxy | SpaceGoods">
+    <meta property="og:description" content="Explore the cosmic soundscape. Each planet is a music track.">
+    <meta property="og:image" content="https://spacegoods.fun/assets/img/Asset 1.png">
+
+    <style>
+        :root {
+            --bg: #000000;
+            --fg: #ffffff;
+            --red: #ea2225;
+            --muted: #888888;
+            --yellow: #FFD93D;
+            --pink: #FF6B9D;
+            --blue: #6BC5FF;
+            --green: #7ED957;
+            --purple: #B088F9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            color: var(--fg);
+            background: #000000;
+            min-height: 100vh;
+            overflow: hidden;
+            cursor: grab;
+        }
+
+        body.dragging {
+            cursor: grabbing;
+        }
+
+        /* Starry Sky Background */
+        .galaxy-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 300%;
+            background: #000000;
+            z-index: 2;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 230px 80px, #ffffff, transparent),
+                radial-gradient(2px 2px at 300px 150px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 370px 200px, #ffffff, transparent),
+                radial-gradient(2px 2px at 450px 50px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 520px 180px, #ffffff, transparent),
+                radial-gradient(2px 2px at 600px 100px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 680px 250px, #ffffff, transparent),
+                radial-gradient(2px 2px at 750px 30px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 820px 160px, #ffffff, transparent),
+                radial-gradient(2px 2px at 900px 220px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 100px 300px, #ffffff, transparent),
+                radial-gradient(2px 2px at 200px 350px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 350px 380px, #ffffff, transparent),
+                radial-gradient(2px 2px at 500px 320px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 650px 400px, #ffffff, transparent),
+                radial-gradient(2px 2px at 800px 350px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 50px 450px, #ffffff, transparent),
+                radial-gradient(2px 2px at 180px 500px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 320px 480px, #ffffff, transparent),
+                radial-gradient(2px 2px at 480px 520px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 620px 470px, #ffffff, transparent),
+                radial-gradient(2px 2px at 780px 510px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 920px 450px, #ffffff, transparent),
+                radial-gradient(2px 2px at 70px 600px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 250px 650px, #ffffff, transparent),
+                radial-gradient(2px 2px at 420px 620px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 580px 680px, #ffffff, transparent),
+                radial-gradient(2px 2px at 740px 630px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 880px 670px, #ffffff, transparent),
+                radial-gradient(2px 2px at 130px 720px, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 290px 780px, #ffffff, transparent),
+                radial-gradient(2px 2px at 460px 750px, rgba(255,255,255,0.7), transparent);
+            background-size: 1000px 800px;
+            animation: twinkle 8s ease-in-out infinite alternate;
+            transform: translate(-33%, -33%);
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+
+        /* Shooting Stars */
+        .shooting-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,1));
+            border-radius: 50% 50% 0 0;
+            transform: rotate(-45deg);
+            animation: shootingStar 8s linear infinite;
+            opacity: 0;
+        }
+
+        .shooting-star:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .shooting-star:nth-child(2) { top: 20%; left: 60%; animation-delay: 2s; }
+        .shooting-star:nth-child(3) { top: 5%; left: 80%; animation-delay: 4s; }
+        .shooting-star:nth-child(4) { top: 30%; left: 40%; animation-delay: 6s; }
+        .shooting-star:nth-child(5) { top: 15%; left: 10%; animation-delay: 1s; }
+        .shooting-star:nth-child(6) { top: 25%; left: 90%; animation-delay: 3s; }
+
+        @keyframes shootingStar {
+            0% { transform: translateY(0px) translateX(0px) rotate(-45deg); opacity: 1; height: 5px; }
+            10% { opacity: 1; height: 80px; }
+            20% { opacity: 1; height: 150px; }
+            30% { opacity: 0; height: 200px; transform: translateY(300px) translateX(300px) rotate(-45deg); }
+            100% { opacity: 0; transform: translateY(300px) translateX(300px) rotate(-45deg); }
+        }
+
+        /* Header */
+        .galaxy-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+            pointer-events: auto;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--fg);
+            pointer-events: auto;
+        }
+
+        .logo-link img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .galaxy-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .galaxy-stats {
+            display: flex;
+            gap: 25px;
+            font-size: 14px;
+            color: var(--muted);
+            margin-left: auto; /* Added to push it to the right */
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-number {
+            color: var(--yellow);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Planets Container */
+        .planets-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 300%;
+            transform: translate(-33%, -33%);
+            transition: transform 0.1s ease-out;
+            z-index: 5;
+        }
+
+        /* Planet Styles */
+        .planet {
+            position: absolute;
+            cursor: pointer;
+            transition: filter 0.3s ease, transform 0.5s ease;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+            z-index: 10;
+        }
+
+        .planet:hover {
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.6));
+            z-index: 50;
+        }
+
+        .planet.playing {
+            z-index: 100 !important;
+            transform: scale(1.3);
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+
+        .planet.playing .planet-avatar {
+            animation: planetPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                filter:
+                    drop-shadow(0 0 15px var(--yellow))
+                    drop-shadow(0 0 30px var(--yellow))
+                    drop-shadow(0 0 50px var(--pink));
+            }
+            50% {
+                filter:
+                    drop-shadow(0 0 25px var(--yellow))
+                    drop-shadow(0 0 50px var(--yellow))
+                    drop-shadow(0 0 80px var(--pink))
+                    drop-shadow(0 0 120px rgba(255, 107, 157, 0.4));
+            }
+        }
+
+        .planet.far {
+            opacity: 0.4;
+            filter: blur(1px) drop-shadow(0 0 8px rgba(255,255,255,0.1));
+        }
+
+        .planet.medium {
+            opacity: 0.7;
+        }
+
+        @keyframes planetPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Planet Avatar Image */
+        .planet-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Central Planet */
+        .central-planet {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            z-index: 80;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 30px rgba(255,255,255,0.4));
+        }
+
+        .central-planet:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            filter: drop-shadow(0 0 50px var(--yellow));
+        }
+
+        .central-planet.active {
+            animation: centralPulse 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 60px var(--yellow)) drop-shadow(0 0 100px var(--pink));
+        }
+
+        .central-planet img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes centralPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .central-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: var(--muted);
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .central-planet:hover .central-label {
+            opacity: 1;
+        }
+
+        /* Music notes animation */
+        .music-notes {
+            position: absolute;
+            top: -15px;
+            right: -5px;
+            font-size: 18px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .planet.playing .music-notes {
+            animation: floatNotes 1.2s ease-in-out infinite;
+        }
+
+        .music-notes-left {
+            position: absolute;
+            top: 0;
+            left: -15px;
+            font-size: 16px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .planet.playing .music-notes-left {
+            animation: floatNotesLeft 1.5s ease-in-out infinite 0.3s;
+        }
+
+        @keyframes floatNotes {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-40px) rotate(15deg); opacity: 0; }
+        }
+
+        @keyframes floatNotesLeft {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-35px) rotate(-20deg); opacity: 0; }
+        }
+
+        /* Planet Preview Popup */
+        .planet-preview {
+            position: absolute;
+            bottom: calc(100% + 15px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: rgba(0,0,0,0.95);
+            border: 3px solid var(--fg);
+            padding: 15px 20px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .planet:hover .planet-preview {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .planet-preview h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--yellow);
+        }
+
+        .planet-preview p {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .planet-preview .play-hint {
+            font-size: 11px;
+            color: var(--green);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .planet-preview::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-top-color: var(--fg);
+        }
+
+        /* Bottom Controls */
+        .bottom-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 30px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+            pointer-events: auto;
+        }
+
+        .summon-btn {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: inherit;
+            border: 4px solid var(--fg);
+            background: var(--red);
+            color: var(--fg);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: rotate(-2deg);
+            pointer-events: auto;
+        }
+
+        .summon-btn::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+
+        .summon-btn:hover {
+            transform: rotate(0deg) scale(1.08);
+            box-shadow: 0 0 30px var(--red);
+            background: var(--yellow);
+            color: var(--bg);
+        }
+
+        .back-btn {
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: inherit;
+            border: 3px solid var(--fg);
+            background: transparent;
+            color: var(--fg);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            pointer-events: auto;
+        }
+
+        .back-btn:hover {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        /* Now Playing */
+        .now-playing {
+            position: fixed;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.95);
+            border: 3px solid var(--yellow);
+            padding: 15px 25px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 90;
+            pointer-events: auto;
+        }
+
+        .now-playing.active {
+            display: flex;
+        }
+
+        .now-playing-icon {
+            font-size: 24px;
+            animation: bounce 0.6s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .now-playing-text {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .now-playing-title {
+            font-weight: 700;
+            color: var(--yellow);
+            font-size: 16px;
+        }
+
+        .stop-btn {
+            background: var(--red);
+            border: 2px solid var(--fg);
+            color: var(--fg);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .stop-btn:hover {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        /* Planet Claiming Styles */
+        .claim-btn {
+            background: var(--blue);
+            border: 2px solid var(--fg);
+            color: var(--fg);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.2s;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .claim-btn:hover {
+            background: var(--purple);
+        }
+        .claimed-status {
+            font-size: 11px;
+            color: var(--pink);
+            margin-top: 5px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg);
+            border: 4px solid var(--fg);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            transform: rotate(-1deg);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--fg);
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            transform: rotate(1deg);
+        }
+
+        .modal > p {
+            color: var(--muted);
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            font-size: 15px;
+            font-family: inherit;
+            border: 3px solid var(--fg);
+            background: var(--bg);
+            color: var(--fg);
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            box-shadow: 0 0 0 3px var(--yellow);
+        }
+
+        .form-group input::placeholder {
+            color: var(--muted);
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .color-option:hover, .color-option.selected {
+            border-color: var(--fg);
+            transform: scale(1.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: inherit;
+            border: 4px solid var(--fg);
+            background: var(--yellow);
+            color: var(--bg);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background: var(--green);
+            transform: scale(1.02);
+        }
+
+        /* Drag hint */
+        .drag-hint {
+            position: fixed;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--muted);
+            font-size: 12px;
+            opacity: 0.6;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .drag-hint.hidden {
+            opacity: 0;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(234, 34, 37, 0.95);
+            color: white;
+            padding: 15px 25px;
+            border: 3px solid var(--fg);
+            font-size: 14px;
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .galaxy-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .galaxy-stats {
+                gap: 15px;
+                font-size: 12px;
+            }
+
+            .summon-btn {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .modal {
+                padding: 25px 20px;
+            }
+
+            .planet-preview {
+                min-width: 150px;
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Galaxy Background -->
+    <div class="galaxy-container" id="galaxy-bg">
+        <div class="shooting-stars">
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="galaxy-header">
+        <a href="index.html" class="logo-link">
+            <img src="assets/img/SVG/horizontallogo.svg" alt="SpaceGoods">
+            <span class="galaxy-title">MUSIC GALAXY</span>
+        </a>
+        <div class="galaxy-stats">
+            <div class="stat">
+                <span class="stat-number" id="planet-count">0</span>
+                <span>planets</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="plays-count">0</span>
+                <span>plays</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Planets Area -->
+    <div class="planets-area" id="planets-area"></div>
+
+    <!-- Central Planet -->
+    <div class="central-planet" id="central-planet" onclick="attractPlanets()">
+        <img src="assets/img/SVG/planetcentral.svg" alt="Central Planet">
+        <span class="central-label">Click to gather</span>
+    </div>
+
+    <!-- Drag Hint -->
+    <div class="drag-hint" id="drag-hint">🖱️ Drag to explore the galaxy</div>
+
+    <!-- Now Playing Bar -->
+    <div class="now-playing" id="now-playing">
+        <span class="now-playing-icon">🎵</span>
+        <div>
+            <div class="now-playing-text">Now Playing</div>
+            <div class="now-playing-title" id="now-playing-title">-</div>
+        </div>
+        <button class="stop-btn" onclick="stopMusic()">■ Stop</button>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="bottom-controls">
+        <a href="music-events.html" class="back-btn">← Events</a>
+        <button class="summon-btn" onclick="openModal()">Summon Planet</button>
+        <a href="index.html" class="back-btn">Home →</a>
+    </div>
+
+    <!-- Create Planet Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>✨ Create Your Planet</h2>
+            <p>Add a music track to the galaxy and share your cosmic vibes!</p>
+
+            <div class="form-group">
+                <label>Planet Name</label>
+                <input type="text" id="planet-name" placeholder="My Cosmic Beat" maxlength="30">
+            </div>
+
+            <div class="form-group">
+                <label>Lien SoundCloud</label>
+                <input type="url" id="music-link" placeholder="https://soundcloud.com/artist/track">
+                <small>Colle un lien SoundCloud (track ou playlist)</small>
+            </div>
+
+            <div class="form-group">
+                <label>Planet Color</label>
+                <div class="color-options">
+                    <div class="color-option selected" style="background: #FFD93D;" data-color="#FFD93D"></div>
+                    <div class="color-option" style="background: #FF6B9D;" data-color="#FF6B9D"></div>
+                    <div class="color-option" style="background: #6BC5FF;" data-color="#6BC5FF"></div>
+                    <div class="color-option" style="background: #7ED957;" data-color="#7ED957"></div>
+                    <div class="color-option" style="background: #B088F9;" data-color="#B088F9"></div>
+                    <div class="color-option" style="background: #FF8C42;" data-color="#FF8C42"></div>
+                </div>
+            </div>
+
+            <button class="submit-btn" onclick="createPlanet()">🚀 Launch Planet!</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Cette piste ne peut pas être lue</div>
+
+    <!-- SoundCloud Audio Player (hidden) -->
+    <iframe id="sc-player"
+            allow="autoplay"
+            style="position:fixed; bottom:0; left:0; width:300px; height:166px; opacity:0; pointer-events:none; z-index:-1;">
+    </iframe>
+
+    <!-- SoundCloud Widget API -->
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+
+    <script>
+        // =====================
+        // STATE
+        // =====================
+        let planets = [];
+        let currentlyPlaying = null;
+        let playsCount = 0;
+        let isDragging = false;
+        let dragStart = { x: 0, y: 0 };
+        let offset = { x: 0, y: 0 };
+        let isAttracting = false;
+        let attractionTimer = null;
+
+        // Avatar SVGs
+        const avatarImages = [
+            'assets/img/SVG/avatar1.svg',
+            'assets/img/SVG/avatar2.svg',
+            'assets/img/SVG/avatar3.svg',
+            'assets/img/SVG/avatar4.svg'
+        ];
+
+        function getRandomAvatar() {
+            return avatarImages[Math.floor(Math.random() * avatarImages.length)];
+        }
+
+        // =====================
+        // DEFAULT PLANETS
+        // =====================
+        // Using SoundCloud tracks (popular/working links)
+        const defaultPlanets = [
+            { id: 1, name: "Lofi Chill", avatar: 'assets/img/SVG/avatar1.svg', link: "https://soundcloud.com/loaboratory/sets/lofi-hip-hop", x: 800, y: 600, size: 85, depth: "near", vx: 0.3, vy: -0.2 },
+            { id: 2, name: "Chillhop", avatar: 'assets/img/SVG/avatar2.svg', link: "https://soundcloud.com/chaborl/lofi-beats-to-sleep-study-to", x: 1400, y: 400, size: 65, depth: "medium", vx: -0.2, vy: 0.15 },
+            { id: 3, name: "Deep House", avatar: 'assets/img/SVG/avatar3.svg', link: "https://soundcloud.com/anjunadeep/sets/anjunadeep-edition-300", x: 600, y: 900, size: 75, depth: "near", vx: 0.15, vy: 0.25 },
+            { id: 4, name: "Ambient", avatar: 'assets/img/SVG/avatar4.svg', link: "https://soundcloud.com/mellowbeats/ambient-study-music", x: 1600, y: 800, size: 55, depth: "far", vx: -0.1, vy: -0.1 },
+            { id: 5, name: "Electronica", avatar: 'assets/img/SVG/avatar1.svg', link: "https://soundcloud.com/monstercat/sets/instinct", x: 400, y: 500, size: 60, depth: "medium", vx: 0.2, vy: 0.1 },
+        ];
+
+        // =====================
+        // SOUNDCLOUD API
+        // =====================
+        let scWidget = null;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function isSoundCloudUrl(url) {
+            return url && url.includes('soundcloud.com');
+        }
+
+        function playSoundCloud(url, planetName) {
+            console.log('Playing SoundCloud:', url);
+
+            const iframe = document.getElementById('sc-player');
+            const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`;
+
+            iframe.src = embedUrl;
+
+            // Wait for iframe to load then bind widget
+            iframe.onload = () => {
+                scWidget = SC.Widget(iframe);
+
+                scWidget.bind(SC.Widget.Events.READY, () => {
+                    console.log('SoundCloud ready!');
+                    scWidget.play();
+                    scWidget.setVolume(100);
+                });
+
+                scWidget.bind(SC.Widget.Events.PLAY, () => {
+                    console.log('SoundCloud playing!');
+                });
+
+                scWidget.bind(SC.Widget.Events.ERROR, () => {
+                    console.error('SoundCloud error');
+                    showToast('Cette piste ne peut pas être lue');
+                    stopMusic();
+                });
+
+                scWidget.bind(SC.Widget.Events.FINISH, () => {
+                    stopMusic();
+                });
+            };
+
+            document.getElementById('now-playing').classList.add('active');
+            document.getElementById('now-playing-title').textContent = planetName;
+        }
+
+        // =====================
+        // PLANET MANAGEMENT
+        // =====================
+        function loadPlanets() {
+            // NEW API LOGIC (Conceptual):
+            fetch('/api/planets')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(apiPlanets => {
+                    if (apiPlanets && apiPlanets.length > 0) {
+                        planets = apiPlanets;
+                    } else {
+                        // Fallback to default if API returns empty
+                        planets = defaultPlanets.map(p => ({...p}));
+                        console.warn('No planets from API, using default.');
+                    }
+
+                    // For now, playsCount is not fetched from backend, keeping it local.
+                    const savedPlays = localStorage.getItem('spacegoods-galaxy-v4-plays');
+                    if (savedPlays) {
+                        playsCount = JSON.parse(savedPlays).plays || 0;
+                    }
+
+                    updateStats();
+                    renderPlanets();
+                    startAnimation();
+                })
+                .catch(error => {
+                    console.error('Error fetching planets from API:', error);
+                    // Fallback to local storage if API fails or returns error
+                    const saved = localStorage.getItem('spacegoods-galaxy-v4');
+                    if (saved) {
+                        const data = JSON.parse(saved);
+                        planets = data.planets || defaultPlanets;
+                        playsCount = data.plays || 0;
+                    } else {
+                        planets = defaultPlanets.map(p => ({...p}));
+                        playsCount = 0;
+                    }
+                    console.warn('API fetch failed, falling back to local storage.');
+                    updateStats();
+                    renderPlanets();
+                    startAnimation();
+                });
+        }
+
+        function savePlanets() {
+            // If planets are managed by API, don't save them to local storage here.
+            // Only save client-side specific data like playsCount.
+            localStorage.setItem('spacegoods-galaxy-v4-plays', JSON.stringify({ plays: playsCount }));
+        }
+
+        function updateStats() {
+            document.getElementById('planet-count').textContent = planets.length;
+            document.getElementById('plays-count').textContent = playsCount;
+        }
+
+        function createPlanetElement(planet) {
+            const el = document.createElement('div');
+            el.className = `planet ${planet.depth || 'near'}`;
+            el.dataset.id = planet.id;
+            el.style.left = planet.x + 'px';
+            el.style.top = planet.y + 'px';
+
+            const size = planet.size || 70;
+            const avatarSrc = planet.avatar || getRandomAvatar();
+
+            const claimInfoHtml = planet.claimedBy
+                ? `<p class="claimed-status">Claimed by: Someone (Expires: ${new Date(planet.claimExpiresAt).toLocaleDateString()})</p>`
+                : `<button class="claim-btn" onclick="claimPlanet(${planet.id})">Claim This Planet</button>`;
+
+            el.innerHTML = `
+                <div class="planet-preview">
+                    <h4>${planet.name}</h4>
+                    <p>🎵 ${planet.link ? 'SoundCloud' : 'No link'}</p>
+                    ${claimInfoHtml}
+                    <div class="play-hint">▶ Click to play</div>
+                </div>
+                <img src="${avatarSrc}" alt="${planet.name}" class="planet-avatar" style="width: ${size}px; height: ${size}px;">
+                <div class="music-notes">♪</div>
+                <div class="music-notes-left">♫</div>
+            `;
+
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playPlanetMusic(planet, el);
+            });
+
+            return el;
+        }
+
+        function renderPlanets() {
+            const area = document.getElementById('planets-area');
+            area.innerHTML = '';
+            planets.forEach(planet => {
+                const el = createPlanetElement(planet);
+                area.appendChild(el);
+            });
+        }
+
+        // =====================
+        // ANIMATION LOOP
+        // =====================
+        function startAnimation() {
+            function animate() {
+                // Skip normal movement when attracting
+                if (isAttracting) {
+                    requestAnimationFrame(animate);
+                    return;
+                }
+
+                planets.forEach((planet, i) => {
+                    // Move planet
+                    planet.x += planet.vx || 0;
+                    planet.y += planet.vy || 0;
+
+                    // Bounce off boundaries
+                    const maxX = window.innerWidth * 3;
+                    const maxY = window.innerHeight * 3;
+
+                    if (planet.x < 50 || planet.x > maxX - 100) planet.vx *= -1;
+                    if (planet.y < 100 || planet.y > maxY - 100) planet.vy *= -1;
+
+                    // Update DOM
+                    const el = document.querySelector(`.planet[data-id="${planet.id}"]`);
+                    if (el) {
+                        el.style.left = planet.x + 'px';
+                        el.style.top = planet.y + 'px';
+                    }
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // =====================
+        // MUSIC PLAYBACK
+        // =====================
+        function playPlanetMusic(planet, element) {
+            stopMusic();
+
+            if (!planet.link) {
+                showToast('Cette planète n\'a pas de lien musical');
+                return;
+            }
+
+            if (!isSoundCloudUrl(planet.link)) {
+                showToast('Lien SoundCloud invalide');
+                return;
+            }
+
+            // Mark as playing
+            document.querySelectorAll('.planet').forEach(p => p.classList.remove('playing'));
+            element.classList.add('playing');
+
+            currentlyPlaying = { planet, element };
+
+            // Play SoundCloud
+            playSoundCloud(planet.link, planet.name);
+
+            // Increment plays
+            playsCount++;
+            savePlanets(); // Save plays count locally
+            updateStats();
+        }
+
+        function stopMusic() {
+            // Stop SoundCloud
+            if (scWidget) {
+                try {
+                    scWidget.pause();
+                } catch(e) {}
+            }
+
+            // Clear iframe
+            const iframe = document.getElementById('sc-player');
+            iframe.src = '';
+
+            if (currentlyPlaying) {
+                currentlyPlaying.element.classList.remove('playing');
+                currentlyPlaying = null;
+            }
+
+            document.getElementById('now-playing').classList.remove('active');
+        }
+
+        // =====================
+        // PLANET CLAIMING (Conceptual)
+        // =====================
+        function claimPlanet(planetId) {
+            console.log('Attempting to claim planet:', planetId);
+            fetch(`/api/planets/claim/${planetId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                // Optionally send a user identifier, e.g., IP address or a generated session ID
+                // body: JSON.stringify({ userId: 'some-session-id' }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => Promise.reject(err));
+                }
+                return response.json();
+            })
+            .then(updatedPlanet => {
+                console.log('Planet claimed via API:', updatedPlanet);
+                const index = planets.findIndex(p => p.id === updatedPlanet.id);
+                if (index !== -1) {
+                    planets[index] = updatedPlanet; // Update local state with API response
+                    renderPlanets(); // Re-render all planets to update status
+                    showToast(`Planète "${updatedPlanet.name}" revendiquée !`);
+                }
+            })
+            .catch(error => {
+                console.error('Error claiming planet:', error);
+                showToast(`Erreur lors de la revendication: ${error.message || error.error || 'Planet already claimed or limit reached.'}`);
+            });
+        }
+
+
+        // =====================
+        // DRAG TO EXPLORE
+        // =====================
+        const galaxyBg = document.getElementById('galaxy-bg');
+        const planetsArea = document.getElementById('planets-area');
+        const dragHint = document.getElementById('drag-hint');
+
+        document.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.planet') || e.target.closest('.modal') ||
+                e.target.closest('.galaxy-header') || e.target.closest('.bottom-controls') ||
+                e.target.closest('.now-playing') || e.target.closest('button') ||
+                e.target.closest('a')) return;
+
+            isDragging = true;
+            document.body.classList.add('dragging');
+            dragStart = { x: e.clientX - offset.x, y: e.clientY - offset.y };
+            dragHint.classList.add('hidden');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            offset.x = e.clientX - dragStart.x;
+            offset.y = e.clientY - dragStart.y;
+
+            // Clamp offset
+            const maxOffset = window.innerWidth;
+            offset.x = Math.max(-maxOffset, Math.min(maxOffset, offset.x));
+            offset.y = Math.max(-maxOffset, Math.min(maxOffset, offset.y));
+
+            const transform = `translate(calc(-33% + ${offset.x}px), calc(-33% + ${offset.y}px))`;
+            galaxyBg.style.transform = transform;
+            planetsArea.style.transform = transform;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.body.classList.remove('dragging');
+        });
+
+        // Touch support
+        document.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.planet') || e.target.closest('.modal') ||
+                e.target.closest('.galaxy-header') || e.target.closest('.bottom-controls') ||
+                e.target.closest('.now-playing')) return;
+
+            isDragging = true;
+            const touch = e.touches[0];
+            dragStart = { x: touch.clientX - offset.x, y: touch.clientY - offset.y };
+            dragHint.classList.add('hidden');
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const touch = e.touches[0];
+
+            offset.x = touch.clientX - dragStart.x;
+            offset.y = touch.clientY - dragStart.y;
+
+            const maxOffset = window.innerWidth;
+            offset.x = Math.max(-maxOffset, Math.min(maxOffset, offset.x));
+            offset.y = Math.max(-maxOffset, Math.min(maxOffset, offset.y));
+
+            const transform = `translate(calc(-33% + ${offset.x}px), calc(-33% + ${offset.y}px))`;
+            galaxyBg.style.transform = transform;
+            planetsArea.style.transform = transform;
+        }, { passive: true });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // =====================
+        // ATTRACT PLANETS
+        // =====================
+        let orbitAngles = [];
+
+        function attractPlanets() {
+            const centralPlanet = document.getElementById('central-planet');
+
+            if (isAttracting) {
+                // Stop attraction - release planets
+                isAttracting = false;
+                centralPlanet.classList.remove('active');
+
+                // Give planets random velocities again
+                planets.forEach(planet => {
+                    planet.vx = (Math.random() - 0.5) * 0.6;
+                    planet.vy = (Math.random() - 0.5) * 0.6;
+                });
+
+                if (attractionTimer) {
+                    cancelAnimationFrame(attractionTimer);
+                    attractionTimer = null;
+                }
+                return;
+            }
+
+            // Start attraction
+            isAttracting = true;
+            centralPlanet.classList.add('active');
+
+            // Calculate center position (where planets should go)
+            const centerX = window.innerWidth * 1.5 - offset.x;
+            const centerY = window.innerHeight * 1.5 - offset.y;
+
+            // Initialize orbit angles - spread planets evenly in a circle
+            orbitAngles = planets.map((_, i) => (i / planets.length) * Math.PI * 2);
+
+            function attractLoop() {
+                if (!isAttracting) return;
+
+                const orbitRadius = 180; // Distance from center
+                const orbitSpeed = 0.008; // Rotation speed
+
+                planets.forEach((planet, i) => {
+                    // Target position on orbit circle
+                    const targetX = centerX + Math.cos(orbitAngles[i]) * orbitRadius;
+                    const targetY = centerY + Math.sin(orbitAngles[i]) * orbitRadius;
+
+                    // Calculate direction to target
+                    const dx = targetX - planet.x;
+                    dy = targetY - planet.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance > 5) {
+                        // Move towards target orbit position
+                        const speed = Math.min(distance * 0.08, 4);
+                        planet.x += (dx / distance) * speed;
+                        planet.y += (dy / distance) * speed;
+                    } else {
+                        // On orbit - rotate slowly
+                        orbitAngles[i] += orbitSpeed;
+                        planet.x = centerX + Math.cos(orbitAngles[i]) * orbitRadius;
+                        planet.y = centerY + Math.sin(orbitAngles[i]) * orbitRadius;
+                    }
+
+                    planet.vx = 0;
+                    planet.vy = 0;
+
+                    // Update DOM
+                    const el = document.querySelector(`.planet[data-id="${planet.id}"]`);
+                    if (el) {
+                        el.style.left = planet.x + 'px';
+                        el.style.top = planet.y + 'px';
+                    }
+                });
+
+                attractionTimer = requestAnimationFrame(attractLoop);
+            }
+
+            attractLoop();
+        }
+
+        // =====================
+        // MODAL
+        // =====================
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.getElementById('planet-name').value = '';
+            document.getElementById('music-link').value = '';
+        }
+
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        function createPlanet() {
+            const name = document.getElementById('planet-name').value.trim() || 'Mystery Planet';
+            const link = document.getElementById('music-link').value.trim();
+            const color = document.querySelector('.color-option.selected').dataset.color;
+
+            if (!link) {
+                showToast('Ajoute un lien SoundCloud !');
+                return;
+            }
+
+            if (!isSoundCloudUrl(link)) {
+                showToast('URL SoundCloud invalide');
+                return;
+            }
+
+            const centerX = window.innerWidth * 1.5 - offset.x;
+            const centerY = window.innerHeight * 1.5 - offset.y;
+
+            const newPlanetData = {
+                name,
+                link,
+                color,
+                avatar: getRandomAvatar(),
+                x: centerX + (Math.random() - 0.5) * 300,
+                y: centerY + (Math.random() - 0.5) * 200,
+                size: 55 + Math.random() * 30,
+                depth: ['near', 'medium', 'far'][Math.floor(Math.random() * 3)],
+                // Backend will assign ID, claimedBy, etc.
+            };
+
+            fetch('/api/planets/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newPlanetData),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => Promise.reject(err));
+                }
+                return response.json();
+            })
+            .then(createdPlanet => {
+                console.log('Planet created via API:', createdPlanet);
+                planets.push(createdPlanet); // Add the planet returned by the API
+                updateStats();
+
+                // Add to DOM with animation
+                const el = createPlanetElement(createdPlanet); // Use createdPlanet from API
+                el.style.transform = 'scale(0)';
+                document.getElementById('planets-area').appendChild(el);
+
+                setTimeout(() => {
+                    el.style.transition = 'transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    el.style.transform = 'scale(1)';
+                    setTimeout(() => {
+                        el.style.transition = '';
+                        el.style.transform = '';
+                    }, 500);
+                }, 50);
+
+                closeModal();
+            })
+            .catch(error => {
+                console.error('Error creating planet:', error);
+                showToast(`Erreur lors de la création de la planète: ${error.message || error.error || 'Limit of 100 planets reached.'}`);
+            });
+        }
+
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // =====================
+        // INIT
+        // =====================
+        loadPlanets();
+    </script>
+
+</body>
+</html>

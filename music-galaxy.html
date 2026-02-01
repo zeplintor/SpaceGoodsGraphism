@@ -182,22 +182,27 @@
 
         .galaxy-stats {
             display: flex;
-            gap: 25px;
-            font-size: 14px;
+            gap: 30px;
+            font-size: 13px;
             color: var(--muted);
-            margin-left: auto; /* Added to push it to the right */
+            margin-left: auto;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .stat {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .stat-number {
             color: var(--yellow);
             font-weight: 700;
-            font-size: 18px;
+            font-size: 22px;
+            text-shadow: 0 0 10px rgba(255, 211, 61, 0.5);
         }
 
         /* Planets Container */
@@ -217,12 +222,12 @@
             position: absolute;
             cursor: pointer;
             transition: filter 0.3s ease, transform 0.5s ease;
-            filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+            filter: drop-shadow(0 0 12px rgba(255,255,255,0.3));
             z-index: 10;
         }
 
         .planet:hover {
-            filter: drop-shadow(0 0 30px rgba(255,255,255,0.6));
+            filter: drop-shadow(0 0 25px rgba(255,255,255,0.7));
             z-index: 50;
         }
 
@@ -239,16 +244,15 @@
         @keyframes glowPulse {
             0%, 100% {
                 filter:
-                    drop-shadow(0 0 15px var(--yellow))
-                    drop-shadow(0 0 30px var(--yellow))
-                    drop-shadow(0 0 50px var(--pink));
+                    drop-shadow(0 0 20px var(--yellow))
+                    drop-shadow(0 0 40px var(--yellow))
+                    drop-shadow(0 0 60px var(--pink));
             }
             50% {
                 filter:
-                    drop-shadow(0 0 25px var(--yellow))
+                    drop-shadow(0 0 30px var(--yellow))
                     drop-shadow(0 0 50px var(--yellow))
-                    drop-shadow(0 0 80px var(--pink))
-                    drop-shadow(0 0 120px rgba(255, 107, 157, 0.4));
+                    drop-shadow(0 0 80px var(--pink));
             }
         }
 
@@ -743,29 +747,144 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* Cacher le logo sur mobile */
+            .logo-link {
+                display: none;
+            }
+
+            /* Central planet - réduire la taille */
+            .central-planet {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* Bottom controls - ajuster padding et layout */
+            .bottom-controls {
+                padding: 15px 15px 20px;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            /* Now playing - dans le header mobile */
+            .now-playing {
+                position: fixed;
+                top: 50px;
+                right: 15px;
+                padding: 0;
+                gap: 0;
+                background: transparent;
+                border: none;
+                backdrop-filter: none;
+                align-items: center;
+            }
+
+            /* Bouton stop comme menu mobile */
+            .stop-btn {
+                padding: 8px 12px;
+                font-size: 11px;
+                min-width: auto;
+                flex-shrink: 0;
+                background: rgba(0, 0, 0, 0.3);
+                color: var(--yellow);
+                border: none;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+                cursor: pointer;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* Cacher le titre sur mobile */
+            .now-playing-title {
+                display: none;
+            }
+
+            /* Drag hint - repositionner */
+            .drag-hint {
+                bottom: 90px;
+                font-size: 11px;
+            }
+
+            /* Toast - repositionner */
+            .toast {
+                bottom: 120px;
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+
+            /* Header - ajuster pour mobile */
             .galaxy-header {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
+                gap: 10px;
+                padding: 10px 15px;
             }
 
             .galaxy-stats {
                 gap: 15px;
-                font-size: 12px;
+                font-size: 11px;
+                padding: 8px 12px;
             }
 
+            .stat-number {
+                font-size: 18px;
+            }
+
+            /* Summon button - taille mobile */
             .summon-btn {
-                padding: 15px 30px;
-                font-size: 16px;
+                padding: 12px 25px;
+                font-size: 14px;
             }
 
+            /* Modal - optimiser pour mobile */
             .modal {
-                padding: 25px 20px;
+                padding: 20px 15px;
+                max-width: 90%;
             }
 
             .planet-preview {
-                min-width: 150px;
-                padding: 12px 15px;
+                min-width: 120px;
+                padding: 10px 12px;
+            }
+
+            /* Supprimer le blur sur mobile pour .planet.far */
+            .planet.far {
+                opacity: 0.85;
+                filter: none;
+            }
+        }
+
+        /* Media query pour très petits écrans */
+        @media (max-width: 480px) {
+            .central-planet {
+                width: 60px;
+                height: 60px;
+            }
+
+            .bottom-controls {
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .now-playing {
+                top: 45px;
+                right: 12px;
+            }
+
+            .stop-btn {
+                font-size: 10px;
+                padding: 6px 10px;
+            }
+
+            .drag-hint {
+                bottom: 70px;
+                font-size: 10px;
+            }
+
+            .toast {
+                bottom: 100px;
+                font-size: 12px;
+                padding: 8px 15px;
             }
         }
     </style>
@@ -793,11 +912,11 @@
         <div class="galaxy-stats">
             <div class="stat">
                 <span class="stat-number" id="planet-count">0</span>
-                <span>planets</span>
+                <span>🪐 planètes</span>
             </div>
             <div class="stat">
                 <span class="stat-number" id="plays-count">0</span>
-                <span>plays</span>
+                <span>🎵 plays</span>
             </div>
         </div>
     </header>
@@ -816,12 +935,9 @@
 
     <!-- Now Playing Bar -->
     <div class="now-playing" id="now-playing">
-        <span class="now-playing-icon">🎵</span>
-        <div>
-            <div class="now-playing-text">Now Playing</div>
-            <div class="now-playing-title" id="now-playing-title">-</div>
-        </div>
-        <button class="stop-btn" onclick="stopMusic()">■ Stop</button>
+        <button class="stop-btn" onclick="stopMusic()" title="Stop music">STOP</button>
+        <div class="now-playing-title" id="now-playing-title">-</div>
+        <div class="now-playing-text" style="display: none;">Now Playing</div>
     </div>
 
     <!-- Bottom Controls -->
@@ -871,7 +987,7 @@
     <!-- SoundCloud Audio Player (hidden) -->
     <iframe id="sc-player"
             allow="autoplay"
-            style="position:fixed; bottom:0; left:0; width:300px; height:166px; opacity:0; pointer-events:none; z-index:-1;">
+            style="position:fixed; bottom:-200px; left:0; width:100%; height:166px; opacity:0; pointer-events:none; z-index:-1;">
     </iframe>
 
     <!-- SoundCloud Widget API -->
@@ -902,6 +1018,20 @@
             return avatarImages[Math.floor(Math.random() * avatarImages.length)];
         }
 
+        // Generate or retrieve a unique session ID for planet claiming
+        function getOrCreateSessionId() {
+            const storageKey = 'spacegoods_session_id';
+            let sessionId = localStorage.getItem(storageKey);
+
+            if (!sessionId) {
+                // Generate a simple unique ID using timestamp + random string
+                sessionId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem(storageKey, sessionId);
+            }
+
+            return sessionId;
+        }
+
         // =====================
         // DEFAULT PLANETS
         // =====================
@@ -925,6 +1055,14 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
+
+        // Mobile detection
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                   || window.innerWidth <= 768;
+        }
+
+        const isMobile = isMobileDevice();
 
         function isSoundCloudUrl(url) {
             return url && url.includes('soundcloud.com');
@@ -970,51 +1108,75 @@
         // =====================
         // PLANET MANAGEMENT
         // =====================
-        function loadPlanets() {
-            // NEW API LOGIC (Conceptual):
-            fetch('/api/planets')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(apiPlanets => {
-                    if (apiPlanets && apiPlanets.length > 0) {
-                        planets = apiPlanets;
-                    } else {
-                        // Fallback to default if API returns empty
-                        planets = defaultPlanets.map(p => ({...p}));
-                        console.warn('No planets from API, using default.');
-                    }
+        async function loadPlanets() {
+            try {
+                // Attendre que Firebase soit initialisé
+                let retries = 0;
+                while (!window.firebaseDB && retries < 20) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    retries++;
+                }
 
-                    // For now, playsCount is not fetched from backend, keeping it local.
-                    const savedPlays = localStorage.getItem('spacegoods-galaxy-v4-plays');
-                    if (savedPlays) {
-                        playsCount = JSON.parse(savedPlays).plays || 0;
-                    }
+                if (!window.firebaseDB) {
+                    throw new Error('Firebase not initialized');
+                }
 
-                    updateStats();
-                    renderPlanets();
-                    startAnimation();
-                })
-                .catch(error => {
-                    console.error('Error fetching planets from API:', error);
-                    // Fallback to local storage if API fails or returns error
-                    const saved = localStorage.getItem('spacegoods-galaxy-v4');
-                    if (saved) {
-                        const data = JSON.parse(saved);
-                        planets = data.planets || defaultPlanets;
-                        playsCount = data.plays || 0;
-                    } else {
-                        planets = defaultPlanets.map(p => ({...p}));
-                        playsCount = 0;
-                    }
-                    console.warn('API fetch failed, falling back to local storage.');
-                    updateStats();
-                    renderPlanets();
-                    startAnimation();
+                const { collection, getDocs } = window.firebaseModules;
+                const planetsRef = collection(window.firebaseDB, 'planets');
+                const snapshot = await getDocs(planetsRef);
+
+                const loadedPlanets = [];
+                snapshot.forEach(docSnapshot => {
+                    const data = docSnapshot.data();
+                    loadedPlanets.push({
+                        id: docSnapshot.id,
+                        ...data,
+                        // Ajouter vélocités si absentes (pour animation)
+                        vx: data.vx !== undefined ? data.vx : (Math.random() - 0.5) * 0.6,
+                        vy: data.vy !== undefined ? data.vy : (Math.random() - 0.5) * 0.6,
+                        // Convertir Firestore Timestamps en Dates
+                        createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : data.createdAt,
+                        claimedAt: data.claimedAt?.toDate ? data.claimedAt.toDate() : data.claimedAt,
+                        claimExpiresAt: data.claimExpiresAt?.toDate ? data.claimExpiresAt.toDate() : data.claimExpiresAt
+                    });
                 });
+
+                if (loadedPlanets.length > 0) {
+                    planets = loadedPlanets;
+                    console.log(`Loaded ${planets.length} planets from Firestore`);
+                } else {
+                    // Pas de planètes dans Firestore, utiliser les planètes par défaut
+                    planets = defaultPlanets.map(p => ({...p}));
+                    console.warn('No planets in Firestore, using defaults');
+                }
+
+                // Charger le compteur de lectures depuis localStorage
+                const savedPlays = localStorage.getItem('spacegoods-galaxy-v4-plays');
+                if (savedPlays) {
+                    playsCount = JSON.parse(savedPlays).plays || 0;
+                }
+
+                updateStats();
+                renderPlanets();
+                startAnimation();
+
+            } catch (error) {
+                console.error('Firestore error:', error);
+                // Fallback to localStorage
+                const saved = localStorage.getItem('spacegoods-galaxy-v4');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    planets = data.planets || defaultPlanets.map(p => ({...p}));
+                    playsCount = data.plays || 0;
+                } else {
+                    planets = defaultPlanets.map(p => ({...p}));
+                    playsCount = 0;
+                }
+                console.warn('Firestore unavailable, using local storage/defaults');
+                updateStats();
+                renderPlanets();
+                startAnimation();
+            }
         }
 
         function savePlanets() {
@@ -1161,35 +1323,48 @@
         // =====================
         // PLANET CLAIMING (Conceptual)
         // =====================
-        function claimPlanet(planetId) {
+        async function claimPlanet(planetId) {
             console.log('Attempting to claim planet:', planetId);
-            fetch(`/api/planets/claim/${planetId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // Optionally send a user identifier, e.g., IP address or a generated session ID
-                // body: JSON.stringify({ userId: 'some-session-id' }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(err => Promise.reject(err));
+            const claimerId = getOrCreateSessionId();
+
+            try {
+                if (!window.firebaseDB) {
+                    throw new Error('Firebase not initialized');
                 }
-                return response.json();
-            })
-            .then(updatedPlanet => {
-                console.log('Planet claimed via API:', updatedPlanet);
-                const index = planets.findIndex(p => p.id === updatedPlanet.id);
+
+                const { doc, updateDoc, Timestamp } = window.firebaseModules;
+                const planetRef = doc(window.firebaseDB, 'planets', planetId);
+
+                // Claim expiration: 1 mois
+                const expiresAt = new Date();
+                expiresAt.setMonth(expiresAt.getMonth() + 1);
+
+                await updateDoc(planetRef, {
+                    claimedBy: claimerId,
+                    claimedAt: Timestamp.now(),
+                    claimExpiresAt: Timestamp.fromDate(expiresAt)
+                });
+
+                console.log('Planet claimed in Firestore:', planetId);
+
+                // Mettre à jour l'état local
+                const index = planets.findIndex(p => p.id === planetId);
                 if (index !== -1) {
-                    planets[index] = updatedPlanet; // Update local state with API response
-                    renderPlanets(); // Re-render all planets to update status
-                    showToast(`Planète "${updatedPlanet.name}" revendiquée !`);
+                    planets[index].claimedBy = claimerId;
+                    planets[index].claimedAt = new Date();
+                    planets[index].claimExpiresAt = expiresAt;
+                    renderPlanets();
+                    showToast(`Planète "${planets[index].name}" revendiquée !`);
                 }
-            })
-            .catch(error => {
+
+            } catch (error) {
                 console.error('Error claiming planet:', error);
-                showToast(`Erreur lors de la revendication: ${error.message || error.error || 'Planet already claimed or limit reached.'}`);
-            });
+                if (error.code === 'permission-denied') {
+                    showToast('Erreur: Planète déjà revendiquée ou expirée');
+                } else {
+                    showToast(`Erreur lors de la revendication: ${error.message}`);
+                }
+            }
         }
 
 
@@ -1306,7 +1481,7 @@
                 if (!isAttracting) return;
 
                 const orbitRadius = 180; // Distance from center
-                const orbitSpeed = 0.008; // Rotation speed
+                const orbitSpeed = 0.015; // Rotation speed (augmentée pour plus de vitesse)
 
                 planets.forEach((planet, i) => {
                     // Target position on orbit circle
@@ -1315,12 +1490,12 @@
 
                     // Calculate direction to target
                     const dx = targetX - planet.x;
-                    dy = targetY - planet.y;
+                    const dy = targetY - planet.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance > 5) {
-                        // Move towards target orbit position
-                        const speed = Math.min(distance * 0.08, 4);
+                        // Move towards target orbit position - vitesse augmentée
+                        const speed = Math.min(distance * 0.15, 8);
                         planet.x += (dx / distance) * speed;
                         planet.y += (dy / distance) * speed;
                     } else {
@@ -1367,11 +1542,12 @@
             });
         });
 
-        function createPlanet() {
+        async function createPlanet() {
             const name = document.getElementById('planet-name').value.trim() || 'Mystery Planet';
             const link = document.getElementById('music-link').value.trim();
             const color = document.querySelector('.color-option.selected').dataset.color;
 
+            // Validations côté client
             if (!link) {
                 showToast('Ajoute un lien SoundCloud !');
                 return;
@@ -1382,41 +1558,62 @@
                 return;
             }
 
-            const centerX = window.innerWidth * 1.5 - offset.x;
-            const centerY = window.innerHeight * 1.5 - offset.y;
+            if (name.length > 50) {
+                showToast('Nom trop long (max 50 caractères)');
+                return;
+            }
 
-            const newPlanetData = {
-                name,
-                link,
-                color,
-                avatar: getRandomAvatar(),
-                x: centerX + (Math.random() - 0.5) * 300,
-                y: centerY + (Math.random() - 0.5) * 200,
-                size: 55 + Math.random() * 30,
-                depth: ['near', 'medium', 'far'][Math.floor(Math.random() * 3)],
-                // Backend will assign ID, claimedBy, etc.
-            };
-
-            fetch('/api/planets/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newPlanetData),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(err => Promise.reject(err));
+            try {
+                if (!window.firebaseDB) {
+                    throw new Error('Firebase not initialized');
                 }
-                return response.json();
-            })
-            .then(createdPlanet => {
-                console.log('Planet created via API:', createdPlanet);
-                planets.push(createdPlanet); // Add the planet returned by the API
+
+                const { collection, addDoc, getDocs, serverTimestamp } = window.firebaseModules;
+                const planetsRef = collection(window.firebaseDB, 'planets');
+
+                // Vérifier limite (100 planètes)
+                const snapshot = await getDocs(planetsRef);
+                if (snapshot.size >= 100) {
+                    showToast('Limite atteinte (100 planètes max)');
+                    return;
+                }
+
+                const centerX = window.innerWidth * 1.5 - offset.x;
+                const centerY = window.innerHeight * 1.5 - offset.y;
+
+                const newPlanet = {
+                    name: name,
+                    link: link,
+                    color: color,
+                    avatar: getRandomAvatar(),
+                    x: centerX + (Math.random() - 0.5) * 300,
+                    y: centerY + (Math.random() - 0.5) * 200,
+                    size: 55 + Math.random() * 30,
+                    depth: ['near', 'medium', 'far'][Math.floor(Math.random() * 3)],
+                    claimedBy: null,
+                    claimedAt: null,
+                    claimExpiresAt: null,
+                    createdAt: serverTimestamp()
+                };
+
+                // Ajouter à Firestore
+                const docRef = await addDoc(planetsRef, newPlanet);
+                console.log('Planet created in Firestore:', docRef.id);
+
+                // Créer objet planète pour l'état local
+                const createdPlanet = {
+                    id: docRef.id,
+                    ...newPlanet,
+                    vx: (Math.random() - 0.5) * 0.6,
+                    vy: (Math.random() - 0.5) * 0.6,
+                    createdAt: new Date() // Pour l'affichage local
+                };
+
+                planets.push(createdPlanet);
                 updateStats();
 
                 // Add to DOM with animation
-                const el = createPlanetElement(createdPlanet); // Use createdPlanet from API
+                const el = createPlanetElement(createdPlanet);
                 el.style.transform = 'scale(0)';
                 document.getElementById('planets-area').appendChild(el);
 
@@ -1430,11 +1627,17 @@
                 }, 50);
 
                 closeModal();
-            })
-            .catch(error => {
+                showToast(`Planète "${name}" créée !`);
+
+            } catch (error) {
                 console.error('Error creating planet:', error);
-                showToast(`Erreur lors de la création de la planète: ${error.message || error.error || 'Limit of 100 planets reached.'}`);
-            });
+                // Vérifier si c'est une erreur de validation Firestore Rules
+                if (error.code === 'permission-denied') {
+                    showToast('Erreur: Données invalides (vérifier nom et lien)');
+                } else {
+                    showToast(`Erreur lors de la création: ${error.message}`);
+                }
+            }
         }
 
         document.getElementById('modal').addEventListener('click', (e) => {
@@ -1449,6 +1652,33 @@
         // INIT
         // =====================
         loadPlanets();
+    </script>
+
+    <!-- Firebase SDK v9 - Configuration et initialisation -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, serverTimestamp, Timestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Configuration Firebase (publique - safe à exposer)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCqGHmlr5essjictjPrX6QFvUhBAw0M62I",
+            authDomain: "tapedat-89686.firebaseapp.com",
+            projectId: "tapedat-89686",
+            storageBucket: "tapedat-89686.firebasestorage.app",
+            messagingSenderId: "928703700865",
+            appId: "1:928703700865:web:55ee646c6c258003431280",
+            measurementId: "G-P02ZMXDBQ7"
+        };
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Rendre disponible globalement pour le script principal
+        window.firebaseDB = db;
+        window.firebaseModules = { collection, addDoc, getDocs, doc, updateDoc, serverTimestamp, Timestamp };
+
+        console.log('Firebase initialized successfully');
     </script>
 
 </body>

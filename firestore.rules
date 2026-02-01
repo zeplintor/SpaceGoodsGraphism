@@ -2,7 +2,37 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /planets/{planetId} {
-      allow read, write: if true;
+      // Lecture publique
+      allow read: if true;
+
+      // Création: limites strictes
+      allow create: if request.auth == null // Pas d'auth requise (mode public)
+                    && request.resource.data.keys().hasAll(['name', 'link', 'avatar', 'x', 'y', 'size', 'depth'])
+                    && request.resource.data.name is string
+                    && request.resource.data.name.size() <= 50
+                    && request.resource.data.link is string
+                    && request.resource.data.link.matches('.*soundcloud\\.com.*')
+                    && request.resource.data.link.size() <= 500
+                    && request.resource.data.size is number
+                    && request.resource.data.size >= 20
+                    && request.resource.data.size <= 150;
+
+      // Update: uniquement pour claim/unclaim
+      allow update: if request.auth == null
+                    && request.resource.data.diff(resource.data).affectedKeys()
+                        .hasOnly(['claimedBy', 'claimedAt', 'claimExpiresAt'])
+                    && (
+                        // Claim si pas déjà claimed
+                        (resource.data.claimedBy == null && request.resource.data.claimedBy != null)
+                        ||
+                        // Unclaim si expiré
+                        (resource.data.claimExpiresAt != null
+                         && resource.data.claimExpiresAt < request.time
+                         && request.resource.data.claimedBy == null)
+                    );
+
+      // Suppression: interdite
+      allow delete: if false;
     }
   }
 }
